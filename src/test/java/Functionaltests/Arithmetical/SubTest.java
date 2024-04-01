@@ -1,4 +1,7 @@
+package Functionaltests.Arithmetical;
+
 import Dataproviders.ArithmeticalDataProvider;
+import Datafactory.CalculatorFactory;
 import com.epam.tat.module4.Calculator;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -21,7 +24,7 @@ public class SubTest {
 
     @Test(dataProvider = "longbasicsub", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Long sub basic test",
-            groups = {"Smoke, arithmetical"})
+            groups = {"smoke", "arithmetical"})
     public void testLongBasicSub (long firstValue, long secondValue, long result){
 
         Long actualResult = calculator.sub(firstValue, secondValue);
@@ -31,7 +34,7 @@ public class SubTest {
 
     @Test(dataProvider = "longboundaryvaluessub", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Long sub boundary values test",
-            groups = {"Critical path, arithmetical"})
+            groups = {"critical path", "arithmetical"})
     public void testLongBoundaryValuesSub (long firstValue, long secondValue, long result){
 
         Long actualResult = calculator.sub(firstValue, secondValue);
@@ -41,7 +44,7 @@ public class SubTest {
 
     @Test (dataProvider = "doublebasicsub", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Double sub basic test",
-            groups = {"Smoke, arithmetical"})
+            groups = {"smoke", "arithmetical"})
     public void testDoubleBasicSub(double firstValue, double secondValue, double result){
 
         Double actualResult = calculator.sub(firstValue, secondValue);
@@ -50,7 +53,7 @@ public class SubTest {
 
     @Test (dataProvider = "doubleboundaryvaluessub", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Double sub boundary values test",
-            groups = {"Critical path, arithmetical"})
+            groups = {"critical path", "arithmetical"})
     public void testDoubleBoundaryValuesSum(double firstValue, double secondValue, double result){
 
         Double actualResult = calculator.sub(firstValue, secondValue);

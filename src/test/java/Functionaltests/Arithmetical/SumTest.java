@@ -1,4 +1,7 @@
+package Functionaltests.Arithmetical;
+
 import Dataproviders.ArithmeticalDataProvider;
+import Datafactory.CalculatorFactory;
 import com.epam.tat.module4.Calculator;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -21,8 +24,9 @@ public class SumTest {
 
 
 
-    @Test(dataProvider = "longbasicsum", dataProviderClass = ArithmeticalDataProvider.class, description = "Long sum method test",
-    groups = {"Smoke, arithmetical"})
+    @Test(dataProvider = "longbasicsum", dataProviderClass = ArithmeticalDataProvider.class,
+            description = "Long sum method test",
+            groups = {"smoke", "arithmetical"})
     public void testBasicLongSum (long firstValue, long secondValue, long result){
 
         Long actualResult = calculator.sum(firstValue, secondValue);
@@ -30,8 +34,9 @@ public class SumTest {
 
     }
 
-    @Test(dataProvider = "longboundaryvaluessum", dataProviderClass = ArithmeticalDataProvider.class, description = "Long sum method test",
-            groups = {"Critical path, arithmetical"})
+    @Test(dataProvider = "longboundaryvaluessum", dataProviderClass = ArithmeticalDataProvider.class,
+            description = "Long sum method test",
+            groups = {"critical path", "arithmetical"})
     public void testBoundaryValuesLongSum (long firstValue, long secondValue, long result){
 
         Long actualResult = calculator.sum(firstValue, secondValue);
@@ -39,16 +44,18 @@ public class SumTest {
 
     }
 
-    @Test (dataProvider = "doublebasicsum", dataProviderClass = ArithmeticalDataProvider.class, description = "Double sum method test",
-    groups = {"Smoke, arithmetical"})
+    @Test (dataProvider = "doublebasicsum", dataProviderClass = ArithmeticalDataProvider.class,
+            description = "Double sum method test",
+            groups = {"critical path", "arithmetical"})
     public void testBasicDoubleSum(double firstValue, double secondValue, double result){
 
         Double actualResult = calculator.sum(firstValue, secondValue);
         Assert.assertEquals(actualResult, result);
     }
 
-    @Test (dataProvider = "doubleboundaryvaluessum", dataProviderClass = ArithmeticalDataProvider.class, description = "Double sum method test",
-            groups = {"Critical path, arithmetical"})
+    @Test (dataProvider = "doubleboundaryvaluessum", dataProviderClass = ArithmeticalDataProvider.class,
+            description = "Double sum method test",
+            groups = {"critical path", "arithmetical"})
     public void testBoundaryValuesDoubleSum(double firstValue, double secondValue, double result){
 
         Double actualResult = calculator.sum(firstValue, secondValue);

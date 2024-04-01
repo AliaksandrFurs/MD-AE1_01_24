@@ -1,4 +1,7 @@
+package Functionaltests.Arithmetical;
+
 import Dataproviders.ArithmeticalDataProvider;
+import Datafactory.CalculatorFactory;
 import com.epam.tat.module4.Calculator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,7 +12,7 @@ public class PowTest {
 
     @Test(dataProvider = "doublebasicpow", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Double pow basic test",
-            groups = {"Smoke, arithmetical"})
+            groups = {"smoke", "arithmetical"})
     public void testDoubleBasicPow (double firstValue, double secondValue, double result){
 
         double actualResult = calculator.pow(firstValue, secondValue);
@@ -19,7 +22,7 @@ public class PowTest {
 
     @Test(dataProvider = "doubleboundaryvaluespow", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Double pow boundary values test",
-            groups = {"Smoke, arithmetical"})
+            groups = {"critical path", "arithmetical"})
     public void testDoubleBoundaryValuesPow (double firstValue, double secondValue, double result){
 
         double actualResult = calculator.pow(firstValue, secondValue);
