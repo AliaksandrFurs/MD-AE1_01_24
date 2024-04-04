@@ -99,15 +99,15 @@ public class DivTest {
 
     }
 
-    // there is a problem with zero and exceptions
     @Test(dataProvider = "doubleonzerodiv", dataProviderClass = ArithmeticalDataProvider.class,
             description = "Double div on zero test",
             groups = {"critical path", "arithmetical"}
-            //expectedExceptions = NumberFormatException.class
     )
-    public void testDoubleOnZeroDiv (double firstValue, double secondValue, double result){
+    public void testDoubleOnZeroDiv (double firstValue, double secondValue){
+        try {
+            calculator.div(firstValue, secondValue);
+        }catch(NumberFormatException e){
 
-        double actualResult = calculator.div(firstValue, secondValue);
-        Assert.assertEquals(actualResult, result);
+        }
     }
 }

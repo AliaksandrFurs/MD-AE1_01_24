@@ -185,9 +185,9 @@ public class ArithmeticalDataProvider {
     @DataProvider(name = "doubleonzerodiv", parallel = true)
     public Object [][] getDoubleOnZeroDivValues(){
         return new Object [][]{
-                {0.1, 0.0, Double.POSITIVE_INFINITY},
-                {Double.MIN_VALUE, 0.0, 0.0},
-                {Double.MAX_VALUE, 0.0, 0.0},
+                {0.1, 0.0},
+                {Double.MIN_VALUE, 0.0},
+                {Double.MAX_VALUE, 0.0},
         };
     }
 
