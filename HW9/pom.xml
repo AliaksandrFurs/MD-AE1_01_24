@@ -28,11 +28,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.epam.tat.module4</groupId>
-            <artifactId>calculator</artifactId>
-            <version>1.0</version>
-            <systemPath>${path}</systemPath>
-            <scope>system</scope>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
         </dependency>
 
     </dependencies>
