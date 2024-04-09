@@ -1,3 +1,4 @@
+import BrowserFactory.BrowserFactory;
 import driverfactory.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,23 +9,21 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import pagefactory.PageFactory;
 import pages.BasicPage;
-import pages.MainPage;
+import utils.Browser;
 
-import java.time.Duration;
 
 public class BaseTest {
 
     public static  final String URL = "https://www.onliner.by/";
+    static Browser browser = BrowserFactory.getBrowser();
     static WebDriver driver = DriverFactory.getChromeDriver();
     static Wait wait = new WebDriverWait(driver, 10);
-    private BasicPage basicPage = new BasicPage();
+    //private BasicPage basicPage = new BasicPage();
 
     @BeforeSuite
-    public void goToHome(){
-        driver.get(URL);
-        wait.until(ExpectedConditions.elementToBeClickable(basicPage.getMainLogo()));
+    public void basicSetup(){
+        browser.browserSetup(driver);
     }
-
 
     @AfterSuite(description = "Close browser", alwaysRun = true)
     static void close (){

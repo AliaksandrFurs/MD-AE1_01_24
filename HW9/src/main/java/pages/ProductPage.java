@@ -1,23 +1,23 @@
 package pages;
 
+import enums.ItemBarEnum;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-public class ProductPage {
+public class ProductPage extends BasicPage {
 
-    By navigationBar = By.className("catalog-navigation catalog-navigation_bar catalog-navigation_simple");
-    By productTitle = By.className("catalog-form__title catalog-form__title_big-alter");
-
-    private ProductPage(){}
-
-    public static ProductPage getProductPage(){
-        return new ProductPage();
-    };
-
-    public By getNavigationBar() {
-        return navigationBar;
+    public ProductPage(WebDriver driver){
+        super(driver);
     }
 
-    public By getProductTitle() {
-        return productTitle;
+    By formHeader = By.className("h1[@class = 'catalog-form__title catalog-form__title_big-alter']");
+
+    @Override
+    public void openPage(ItemBarEnum itembar) {
+        itemBar.clickOnItem(itembar);
+    }
+
+    public By getFormHeader() {
+        return formHeader;
     }
 }

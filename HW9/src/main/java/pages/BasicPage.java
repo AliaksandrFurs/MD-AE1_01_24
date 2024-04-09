@@ -1,14 +1,18 @@
 package pages;
 
-import org.openqa.selenium.By;
+import elements.HeaderBar;
+import elements.ItemBar;
 import org.openqa.selenium.WebDriver;
 
-public class BasicPage {
-    WebDriver driver;
+public abstract class BasicPage implements  Page {
 
-    By mainLogo = By.className("onliner_logo");
+    protected HeaderBar headerBar;
+    protected ItemBar itemBar;
+    protected WebDriver webDriver;
 
-    public By getMainLogo() {
-        return mainLogo;
+    public BasicPage(WebDriver webDriver){
+        this.webDriver = webDriver;
+        this.headerBar = new HeaderBar(webDriver);
+        this.itemBar = new ItemBar(webDriver);
     }
 }

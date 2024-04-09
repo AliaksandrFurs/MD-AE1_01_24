@@ -1,26 +1,18 @@
 package pagefactory;
 
 import com.sun.tools.javac.Main;
-import pages.MainPage;
+import org.openqa.selenium.WebDriver;
 import pages.ProductPage;
 
 public class PageFactory {
 
-    private static MainPage mainPageFactory;
     private static ProductPage productPageFactory;
 
     private PageFactory(){};
 
-    public static MainPage getMainPage(){
-        if(mainPageFactory == null){
-            mainPageFactory = MainPage.getMainPage();
-        }
-        return  mainPageFactory;
-    };
-
-    public static ProductPage getProductPage(){
+    public static ProductPage getProductPage(WebDriver driver){
         if(productPageFactory == null){
-            productPageFactory = ProductPage.getProductPage();
+            productPageFactory = new ProductPage(driver);
         }
         return  productPageFactory;
     };
