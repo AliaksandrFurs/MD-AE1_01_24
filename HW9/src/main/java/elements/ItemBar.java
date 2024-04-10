@@ -17,9 +17,6 @@ public class ItemBar {
 
     public void clickOnItem(ItemBarEnum itembar) {
         By xpath = By.xpath(String.format(PATTERN, itembar.getValue()));
-
-        //WaitUtil.waitUntilElementVisible(webDriver, xpath, DEFAULT_ELEMENT_WAIT_IN_SECOND);
-
         WebElement itemElement = driver.findElement(xpath);
         itemElement.click();
 

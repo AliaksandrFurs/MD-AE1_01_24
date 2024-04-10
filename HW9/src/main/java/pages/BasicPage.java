@@ -8,11 +8,11 @@ public abstract class BasicPage implements  Page {
 
     protected HeaderBar headerBar;
     protected ItemBar itemBar;
-    protected WebDriver webDriver;
+    protected WebDriver driver;
 
-    public BasicPage(WebDriver webDriver){
-        this.webDriver = webDriver;
-        this.headerBar = new HeaderBar(webDriver);
-        this.itemBar = new ItemBar(webDriver);
+    public BasicPage(WebDriver driver){
+        this.driver = driver;
+        this.headerBar = new HeaderBar(driver);
+        this.itemBar = new ItemBar(driver);
     }
 }

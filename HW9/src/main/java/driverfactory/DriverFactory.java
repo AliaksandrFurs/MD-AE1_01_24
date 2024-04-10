@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class DriverFactory {
 
     static {
-        System.setProperty("webdriver.chrome.driver", "c:/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\37529\\IdeaProjects\\MD-AE1_01_24\\HW9\\Drivers\\chromedriver.exe");
     }
 
     private static WebDriver driver;
@@ -16,7 +16,6 @@ public class DriverFactory {
 
     public static WebDriver getChromeDriver() {
         if (driver == null) {
-            //System.setProperty("webdriver.chrome.driver", "C:/Users/37529/IdeaProjects/MyTestSeleniumProject/Drivers/chromedriver.exe");
             driver = new ChromeDriver();
         }
         return driver;
