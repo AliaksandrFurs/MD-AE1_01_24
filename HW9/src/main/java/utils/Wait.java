@@ -8,15 +8,17 @@ import utilsfactory.WaitFactory;
 
 public class Wait {
 
-    public static void isElementPresented(WebDriver driver, By element, long timeout){
+    private static final long DEFAULT_WAIT_IN_SEC = 10;
 
-        WebDriverWait wait = WaitFactory.getWait(driver, timeout);
+    public static void isElementPresented(WebDriver driver, By element){
+
+        WebDriverWait wait = WaitFactory.getWait(driver, DEFAULT_WAIT_IN_SEC);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
     }
 
-    public static void isElementClickable(WebDriver driver, By element, long timeout){
+    public static void isElementClickable(WebDriver driver, By element){
 
-        WebDriverWait wait = WaitFactory.getWait(driver, timeout);
+        WebDriverWait wait = WaitFactory.getWait(driver, DEFAULT_WAIT_IN_SEC);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     };
 }

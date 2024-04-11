@@ -14,7 +14,7 @@ public class WaitFactory {
         if(webDriverWait == null){
 
             webDriverWait = new ThreadLocal<>();
-            webDriverWait.set(new WebDriverWait(driver, 10));
+            webDriverWait.set(new WebDriverWait(driver, timeout));
         }
         return webDriverWait.get();
     }

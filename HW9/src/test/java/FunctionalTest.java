@@ -15,7 +15,7 @@ public class FunctionalTest extends BaseTest{
     public void basicVerification(){
 
         driver.get(URL);
-        Wait.isElementPresented(driver, HeaderBar.getTOPELEMENT(), 10);
+        Wait.isElementPresented(driver, HeaderBar.getTOPELEMENT());
 
     }
 
@@ -30,7 +30,7 @@ public class FunctionalTest extends BaseTest{
     public void goToMain(){
 
         driver.findElement(HeaderBar.getHEADERLOGO()).click();
-        Wait.isElementClickable(driver, HeaderBar.getHEADERLOGO(), 10);
+        Wait.isElementClickable(driver, HeaderBar.getHEADERLOGO());
 
     }
 
@@ -38,7 +38,7 @@ public class FunctionalTest extends BaseTest{
     public void selectSamsungTest(){
 
         productPage.selectCheckbox(ProducentEnum.SAMSUNG);
-        Wait.isElementPresented(driver, ProductPage.getRESULTFILTER(), 10);
+        Wait.isElementPresented(driver, ProductPage.getRESULTFILTER());
 
         String resultText = driver.findElement(ProductPage.getRESULTELEMENT()).getText();
 
