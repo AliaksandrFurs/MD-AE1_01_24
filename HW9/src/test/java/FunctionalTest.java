@@ -38,12 +38,12 @@ public class FunctionalTest extends BaseTest{
     @Test(description = "Selecting checkboxses")
     public void selectSamsungTest(){
 
-        productPage.selectCheckbox(ProductPageCheckboxTypeEnum.PRODUCENT, ProducentEnum.SAMSUNG);
+        productPage.selectCheckbox(ProductPageCheckboxTypeEnum.PRODUCENT, ProducentEnum.LG);
         Wait.isElementPresented(driver, ProductPage.getRESULTFILTER());
 
         String resultText = driver.findElement(ProductPage.getRESULTELEMENT()).getText();
 
-        Assert.assertTrue(resultText.contains(ProducentEnum.SAMSUNG.toString()), "No Samsung TV on the list");
+        Assert.assertTrue(resultText.contains(ProducentEnum.LG.toString()), "No LG TV on the list");
     }
 
 }
