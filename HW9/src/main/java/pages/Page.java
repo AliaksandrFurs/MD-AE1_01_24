@@ -4,14 +4,13 @@ import enums.ItemBarEnum;
 import enums.ProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 
-import java.util.ArrayList;
 
 public interface Page {
-    public abstract void openPage(ItemBarEnum itembar);
+    void openPage(ItemBarEnum itembar);
 
-    public abstract boolean isOpened();
+    boolean isOpened();
 
-    public abstract void selectCheckbox(ProductPageCheckboxTypeEnum checkboxType, ProducentEnum producent);
+    void selectCheckbox(ProductPageCheckboxTypeEnum checkboxType, ProducentEnum producent);
 
 }
 

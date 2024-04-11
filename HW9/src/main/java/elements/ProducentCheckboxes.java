@@ -18,13 +18,6 @@ public class ProducentCheckboxes extends BasicCheckboxs{
         this.driver= driver;
     }
 
-    //public void selectProducent(ProducentEnum producent){
-
-        //By xpath = By.xpath(String.format(PATTERN, producent.getValue()));
-        //WebElement itemElement = driver.findElement(xpath);
-        //itemElement.click();
-    //}
-
     @Override
     public String getCheckboxTypeName() {
         return name;

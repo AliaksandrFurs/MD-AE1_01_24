@@ -1,6 +1,5 @@
 package pagefactory;
 
-import com.sun.tools.javac.Main;
 import org.openqa.selenium.WebDriver;
 import pages.ProductPage;
 

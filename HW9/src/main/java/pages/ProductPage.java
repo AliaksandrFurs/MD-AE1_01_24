@@ -2,7 +2,6 @@ package pages;
 
 import elements.BasicCheckboxs;
 import elements.HeaderBar;
-import elements.ProducentCheckboxes;
 import enums.ItemBarEnum;
 import enums.ProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
@@ -10,9 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Wait;
 import utilsfactory.ProductPageCheckboxFactory;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ProductPage extends BasicPage {
 
