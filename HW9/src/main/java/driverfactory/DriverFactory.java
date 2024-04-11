@@ -2,6 +2,7 @@ package driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverFactory {
 
@@ -9,21 +10,21 @@ public class DriverFactory {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\37529\\IdeaProjects\\MD-AE1_01_24\\HW9\\Drivers\\chromedriver.exe");
     }
 
-    private static WebDriver driver;
-
+    private static ThreadLocal<WebDriver> driver;
     private DriverFactory() {
     }
 
     public static WebDriver getChromeDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            driver = new ThreadLocal<>();
+            driver.set(new ChromeDriver());
         }
-        return driver;
+        return driver.get();
     }
 
     public static void close() {
         if (driver == null) {
-            driver.quit();
+            driver.get().quit();
             driver = null;
         }
     }

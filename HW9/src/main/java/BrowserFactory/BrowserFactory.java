@@ -4,15 +4,17 @@ import utils.Browser;
 
 public class BrowserFactory {
 
-    private static Browser browser;
+    private static ThreadLocal<Browser> browser;
 
     private BrowserFactory(){};
 
     public static Browser getBrowser(){
 
         if(browser == null){
-            return new Browser();
+            //Browser browserInitialize = new Browser();
+            browser = new ThreadLocal<>();
+            browser.set(new Browser());
         }
-        return browser;
+        return browser.get();
     }
 }

@@ -42,7 +42,7 @@ public class FunctionalTest extends BaseTest{
 
         String resultText = driver.findElement(ProductPage.getRESULTELEMENT()).getText();
 
-        Assert.assertTrue(resultText.contains(ProducentEnum.SAMSUNG.toString()));
+        Assert.assertTrue(resultText.contains(ProducentEnum.SAMSUNG.toString()), "No Samsung TV on the list");
     }
 
 }
