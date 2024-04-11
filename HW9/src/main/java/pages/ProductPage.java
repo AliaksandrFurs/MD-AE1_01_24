@@ -1,19 +1,25 @@
 package pages;
 
+import elements.BasicCheckboxs;
 import elements.HeaderBar;
 import elements.ProducentCheckboxes;
 import enums.ItemBarEnum;
 import enums.ProducentEnum;
+import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Wait;
+import utilsfactory.ProductPageCheckboxFactory;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductPage extends BasicPage {
 
-    protected ProducentCheckboxes producentCheckboxes;
-
     public ProductPage(WebDriver driver){
+
         super(driver);
+        allCheckboxes = ProductPageCheckboxFactory.getAllPageCheckboxes(driver);
     }
 
     private static final By FORMHEADER = By.xpath("h1[@class = 'catalog-form__title catalog-form__title_big-alter']");
@@ -37,9 +43,12 @@ public class ProductPage extends BasicPage {
     }
 
     @Override
-    public void selectCheckbox(ProducentEnum producent) {
-        producentCheckboxes.selectProducent(producent);
+    public void selectCheckbox(ProductPageCheckboxTypeEnum checkboxType, ProducentEnum producent) {
+        // verificate type - TBD
+        BasicCheckboxs checkbox = allCheckboxes.get(checkboxType);
+        checkbox.selectCheckbox(producent);
     }
+
 
     public static By getRESULTFILTER() {
         return RESULTFILTER;

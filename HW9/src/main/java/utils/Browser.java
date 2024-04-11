@@ -9,4 +9,5 @@ public class Browser {
     public  void browserSetup(WebDriver driver) {
         driver.manage().window().maximize();
     }
+
 }

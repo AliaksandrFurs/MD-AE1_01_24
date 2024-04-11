@@ -1,6 +1,7 @@
 import elements.HeaderBar;
 import enums.ItemBarEnum;
 import enums.ProducentEnum;
+import enums.ProductPageCheckboxTypeEnum;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pagefactory.PageFactory;
@@ -37,7 +38,7 @@ public class FunctionalTest extends BaseTest{
     @Test(description = "Selecting checkboxses")
     public void selectSamsungTest(){
 
-        productPage.selectCheckbox(ProducentEnum.SAMSUNG);
+        productPage.selectCheckbox(ProductPageCheckboxTypeEnum.PRODUCENT, ProducentEnum.SAMSUNG);
         Wait.isElementPresented(driver, ProductPage.getRESULTFILTER());
 
         String resultText = driver.findElement(ProductPage.getRESULTELEMENT()).getText();
