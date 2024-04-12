@@ -31,9 +31,9 @@ public class ProductPage extends BasicPage {
     @Override
     public boolean isOpened() {
 
-        Wait.isElementPresented(driver, FORMHEADER);
-        Wait.isElementPresented(driver, HeaderBar.getTOPELEMENT());
-        Wait.isElementClickable(driver, HeaderBar.getHEADERLOGO());
+        Wait.isElementPresented(FORMHEADER);
+        Wait.isElementPresented(HeaderBar.getTOPELEMENT());
+        Wait.isElementClickable(HeaderBar.getHEADERLOGO());
 
         return driver.findElements(FORMHEADER).size() > 0 && driver.findElements(HeaderBar.getTOPELEMENT()).size() > 0;
     }

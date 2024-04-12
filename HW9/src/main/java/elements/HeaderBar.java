@@ -4,6 +4,7 @@ import enums.HeaderEnum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.Browser;
 
 public class HeaderBar {
 
@@ -11,6 +12,7 @@ public class HeaderBar {
     private static final By TOPELEMENT = By.className("g-top");
     private static  final By HEADERLOGO = By.className("onliner-logo");
     WebDriver driver;
+
 
     public HeaderBar(WebDriver driver) {
         this.driver = driver;

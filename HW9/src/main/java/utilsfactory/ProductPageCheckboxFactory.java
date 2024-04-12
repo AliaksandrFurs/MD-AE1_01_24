@@ -17,10 +17,8 @@ public class ProductPageCheckboxFactory {
 
         if(checkboxesFactory == null){
 
-            //checkboxesFactory = new ThreadLocal<>();
             checkboxesFactory = new HashMap<>();
             checkboxesFactory.put(ProductPageCheckboxTypeEnum.PRODUCENT, new ProducentCheckboxes(driver));
-            //webDriverWait.set(new WebDriverWait(driver, timeout));
         }
         return  checkboxesFactory;
     }

@@ -2,7 +2,7 @@ package driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
 
@@ -11,21 +11,15 @@ public class DriverFactory {
     }
 
     private static ThreadLocal<WebDriver> driver;
+
     private DriverFactory() {
     }
 
-    public static WebDriver getChromeDriver() {
+    public static WebDriver getChromeDriver(ChromeOptions options) {
         if (driver == null) {
             driver = new ThreadLocal<>();
-            driver.set(new ChromeDriver());
+            driver.set(new ChromeDriver(options));
         }
         return driver.get();
-    }
-
-    public static void close() {
-        if (driver == null) {
-            driver.get().quit();
-            driver = null;
-        }
     }
 }
