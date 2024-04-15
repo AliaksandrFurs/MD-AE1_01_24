@@ -10,7 +10,6 @@ import utils.Browser;
 
 public class BaseTest {
 
-    public static  final String URL = "https://www.onliner.by/";
     static Browser browser = new Browser(BrowsersEnum.CHROME);
     static WebDriver driver = Browser.getDriver();
 

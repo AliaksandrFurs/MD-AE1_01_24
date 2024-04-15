@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 
-public abstract class BasicPage implements  Page {
+public abstract class BasicPage implements BasicActions {
 
     protected HeaderBar headerBar;
     protected ItemBar itemBar;

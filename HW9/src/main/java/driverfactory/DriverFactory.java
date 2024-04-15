@@ -19,6 +19,7 @@ public class DriverFactory {
         if (driver == null) {
             driver = new ThreadLocal<>();
             driver.set(new ChromeDriver(options));
+
         }
         return driver.get();
     }
