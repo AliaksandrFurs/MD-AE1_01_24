@@ -9,8 +9,9 @@ import org.openqa.selenium.WebElement;
 public class CatalogueNavigationBar extends BasicBar{
 
     WebDriver driver;
-    private static final String PATTERN = "//div[contains(@class, 'catalog-navigation-list__aside-item')]" +
-            "/div[contains(text(),'%s')]";
+    private static final String PATTERN = "//ul[contains(@class, 'catalog-navigation-classifier')]" +
+            "//li[contains(@class, 'catalog-navigation-classifier__item')]//span[contains(text(),'%s')]" +
+            "/ancestor-or-self::li[@class='catalog-navigation-classifier__item']";
 
     public CatalogueNavigationBar(WebDriver driver){
         this.driver = driver;

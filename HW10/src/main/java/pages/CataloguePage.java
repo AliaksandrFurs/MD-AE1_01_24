@@ -15,15 +15,18 @@ public class CataloguePage extends BasicPage implements BasicActions{
     public CataloguePage (WebDriver driver){
 
         super(driver);
-        this.allBars.put(BarTypeEnum.CATALOGUENAVIGATION, catalogueNavigationBar);
-        this.allBars.put(BarTypeEnum.CATALOGUEMAIN, catalogueBar);
+        allBars.put(BarTypeEnum.CATALOGUENAVIGATION, catalogueNavigationBar);
+        allBars.put(BarTypeEnum.CATALOGUEMAIN, catalogueBar);
     }
 
 
     @Override
-    public void openPage(BarValuesEnum pageType) {
-
-        catalogueBar.clickOnBar(pageType);
+    public void openPage(BarTypeEnum enumtype, BarValuesEnum pageType) {
+        allBars.get(enumtype).clickOnBar(pageType);
+        if(consentElement.isDisplayed()){
+            acceptButton.click();
+        }
+        //headerBarMainNavigationValue.clickOnBar(pageType);
     }
 
     @Override

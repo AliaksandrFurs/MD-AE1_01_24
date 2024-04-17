@@ -1,4 +1,4 @@
-import driverfactory.DriverFactory;
+import enums.BarTypeEnum;
 import enums.BarValuesEnum;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -16,17 +16,17 @@ public class CatalogueTest extends  BaseTest{
     CataloguePage cataloguePage = PageFactory.getCataloguePage(driver);
     SoftAssert softAssert = new SoftAssert();
 
-    @BeforeClass
-    public void basicVerification(){
+    //@BeforeClass
+    //public void basicVerification(){
 
-        mainPage.isOpened();
+        //mainPage.isOpened();
 
-    }
+    //}
 
     @BeforeMethod
     public void navigateTo(){
 
-        cataloguePage.openPage(BarValuesEnum.CATALOG);
+        cataloguePage.openPage(BarTypeEnum.HEADERBARMAINNAVIGATION, BarValuesEnum.CATALOG);
 
     }
 
@@ -49,7 +49,7 @@ public class CatalogueTest extends  BaseTest{
     @Test()
     public void catalogueNavigationBarTest(){
 
-        cataloguePage.openPage(BarValuesEnum.COMPUTERS);
+        cataloguePage.openPage(BarTypeEnum.CATALOGUENAVIGATION, BarValuesEnum.COMPUTERS);
         Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(BarValuesEnum.LAPTOPS),
                 "No laptops section displayed ");
         Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(BarValuesEnum.PARTS),

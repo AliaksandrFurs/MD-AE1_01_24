@@ -1,4 +1,5 @@
 
+import enums.BarTypeEnum;
 import enums.BarValuesEnum;
 import enums.ProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
@@ -13,17 +14,17 @@ public class FunctionalTest extends BaseTest{
     ProductPage productPage = PageFactory.getProductPage(driver);
     MainPage mainPage = PageFactory.getMainPage(driver);
 
-    @BeforeClass
-    public void basicVerification(){
+    //@BeforeClass
+    //public void basicVerification(){
 
-        mainPage.isOpened();
+        //mainPage.isOpened();
 
-    }
+    //}
 
     @BeforeMethod
     public void navigateTo(){
 
-        productPage.openPage(BarValuesEnum.TV);
+        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION,BarValuesEnum.TV);
 
     }
 

@@ -7,7 +7,7 @@ public enum BarValuesEnum {
     CATALOG("Каталог"),
     NEWS("Нововсти"),
     ELECTONIC("Электроника"),
-    COMPUTERS("Компьютера и сети"),
+    COMPUTERS("Компьютеры и сети"),
     TECHNICS("Бытовая техника"),
     BUILDING("Стройка и ремонт"),
     HOUSE("Дом и сад"),

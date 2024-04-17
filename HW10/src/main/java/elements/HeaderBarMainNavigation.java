@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.Wait;
 
 public class HeaderBarMainNavigation extends BasicBar{
 
@@ -15,7 +16,7 @@ public class HeaderBarMainNavigation extends BasicBar{
     @FindBy(className = "g-top")
     private  WebElement topElement;
     //private static  final By HEADERLOGO = By.className("onliner-logo");
-    @FindBy(className = "onliner-logo")
+    @FindBy(xpath = "//img[contains(@Class, 'onliner_logo')]")
     private WebElement headerLogo;
     WebDriver driver;
 
@@ -46,6 +47,7 @@ public class HeaderBarMainNavigation extends BasicBar{
         By xpath = By.xpath(String.format(PATTERN, enumValue.getValue()));
         WebElement menuElement = driver.findElement(xpath);
         menuElement.click();
+        //Wait.isElementPresented(menuElement);
     }
 
     @Override

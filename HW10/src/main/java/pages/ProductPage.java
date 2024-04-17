@@ -37,9 +37,12 @@ public class ProductPage extends BasicPage implements ElementActions {
     private WebElement resultElement;
 
     @Override
-    public void openPage(BarValuesEnum pageName) {
-
-        headerBarMainNavigationValue.clickOnBar(pageName);
+    public void openPage(BarTypeEnum enumType, BarValuesEnum pageName) {
+        allBars.get(enumType).clickOnBar(pageName);
+        if(consentElement.isDisplayed()){
+            acceptButton.click();
+        }
+        //headerBarMainNavigationValue.clickOnBar(pageName);
     }
 
     @Override
