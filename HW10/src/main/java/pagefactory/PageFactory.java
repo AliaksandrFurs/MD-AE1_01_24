@@ -1,13 +1,23 @@
 package pagefactory;
 
+import elements.BasicBar;
+import elements.BasicCheckboxs;
+import elements.CatalogueBar;
+import elements.ProducentCheckboxes;
+import enums.BarTypeEnum;
+import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.WebDriver;
+import pages.CataloguePage;
 import pages.MainPage;
 import pages.ProductPage;
+
+import java.util.HashMap;
 
 public class PageFactory {
 
     private static ProductPage productPageFactory;
     private static MainPage mainPageFactory;
+    private static CataloguePage cataloguePage;
 
     private PageFactory(){};
 
@@ -22,6 +32,15 @@ public class PageFactory {
         if(mainPageFactory == null){
             mainPageFactory = new MainPage(driver);
         }
+
         return  mainPageFactory;
     };
+
+    public static CataloguePage getCataloguePage(WebDriver driver){
+
+        if(cataloguePage == null){
+            cataloguePage = new CataloguePage(driver);
+        }
+       return cataloguePage;
+    }
 }

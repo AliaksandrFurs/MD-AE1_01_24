@@ -1,7 +1,9 @@
 package pages;
 
 import elements.BasicCheckboxs;
-import enums.ItemBarEnum;
+import elements.ProducentCheckboxes;
+import enums.BarTypeEnum;
+import enums.BarValuesEnum;
 import enums.ProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +19,7 @@ public class ProductPage extends BasicPage implements ElementActions {
 
         super(driver);
         PageFactory.initElements(driver, this);
-        allCheckboxes = ProductPageCheckboxFactory.getAllPageCheckboxes(driver);
+        this.allCheckboxes.put(ProductPageCheckboxTypeEnum.PRODUCENT, new ProducentCheckboxes(driver));
     }
 
     //private static final By FORMHEADER = By.xpath("h1[@class = 'catalog-form__title catalog-form__title_big-alter']");
@@ -35,16 +37,17 @@ public class ProductPage extends BasicPage implements ElementActions {
     private WebElement resultElement;
 
     @Override
-    public void openPage(ItemBarEnum itembar) {
-        itemBar.clickOnItem(itembar);
+    public void openPage(BarTypeEnum enumType, BarValuesEnum pageName) {
+
+        headerBarMainNavigationValue.clickOnBar(enumType, pageName);
     }
 
     @Override
     public void isOpened() {
 
         Wait.isElementPresented(formHeader);
-        Wait.isElementPresented(headerBar.getTopElement());
-        Wait.isElementClickable(headerBar.getHeaderLogo());
+        Wait.isElementPresented(headerBarMainNavigationValue.getTopElement());
+        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
 
         //return driver.findElements(FORMHEADER).size() > 0 && driver.findElements(headerBar.getTopElement()).size() > 0;
     }
@@ -61,8 +64,9 @@ public class ProductPage extends BasicPage implements ElementActions {
 
     @Override
     public void goToMain() {
-        headerBar.getHeaderLogo().click();
-        Wait.isElementClickable(headerBar.getHeaderLogo());
+
+        headerBarMainNavigationValue.getHeaderLogo().click();
+        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
     }
 
     public WebElement getFormHeader() {

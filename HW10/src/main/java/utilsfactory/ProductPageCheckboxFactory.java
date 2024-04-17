@@ -1,7 +1,9 @@
 package utilsfactory;
 
+import elements.BasicBar;
 import elements.BasicCheckboxs;
 import elements.ProducentCheckboxes;
+import enums.BarTypeEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.WebDriver;
 
@@ -10,6 +12,7 @@ import java.util.HashMap;
 public class ProductPageCheckboxFactory {
 
     private static HashMap <ProductPageCheckboxTypeEnum, BasicCheckboxs> checkboxesFactory;
+    //private static HashMap<BarTypeEnum, BasicBar> barsFactory;
 
     private ProductPageCheckboxFactory(){}
 
@@ -22,4 +25,5 @@ public class ProductPageCheckboxFactory {
         }
         return  checkboxesFactory;
     }
+
 }

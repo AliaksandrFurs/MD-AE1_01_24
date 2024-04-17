@@ -20,7 +20,7 @@ public class ProducentCheckboxes extends BasicCheckboxs{
 
     @Override
     public String getCheckboxTypeName() {
-        return name;
+        return this.name;
     }
 
     @Override

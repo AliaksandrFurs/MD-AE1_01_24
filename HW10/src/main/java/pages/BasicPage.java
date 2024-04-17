@@ -1,8 +1,10 @@
 package pages;
 
+import elements.BasicBar;
 import elements.BasicCheckboxs;
-import elements.HeaderBar;
-import elements.ItemBar;
+import elements.HeaderBarMainNavigation;
+import elements.ItemBarProductNavigation;
+import enums.BarTypeEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.WebDriver;
 
@@ -10,15 +12,16 @@ import java.util.HashMap;
 
 public abstract class BasicPage implements BasicActions {
 
-    protected HeaderBar headerBar;
-    protected ItemBar itemBar;
+    protected HeaderBarMainNavigation headerBarMainNavigationValue;
+    protected ItemBarProductNavigation headerBarProductNavigationValue;
     protected WebDriver driver;
     protected HashMap<ProductPageCheckboxTypeEnum, BasicCheckboxs> allCheckboxes;
+    protected HashMap<BarTypeEnum, BasicBar> allBars;
 
     public BasicPage(WebDriver driver){
         this.driver = driver;
-        this.headerBar = new HeaderBar(driver);
-        this.itemBar = new ItemBar(driver);
+        this.headerBarMainNavigationValue = new HeaderBarMainNavigation(driver);
+        this.headerBarProductNavigationValue = new ItemBarProductNavigation(driver);
     }
 
 

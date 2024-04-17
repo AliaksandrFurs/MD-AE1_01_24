@@ -1,12 +1,11 @@
 package pages;
 
-import enums.ItemBarEnum;
-import enums.ProducentEnum;
-import enums.ProductPageCheckboxTypeEnum;
 
+import enums.BarTypeEnum;
+import enums.BarValuesEnum;
 
 public interface BasicActions {
-    void openPage(ItemBarEnum itembar);
+    void openPage(BarTypeEnum enumType, BarValuesEnum pageName);
 
     void isOpened();
 

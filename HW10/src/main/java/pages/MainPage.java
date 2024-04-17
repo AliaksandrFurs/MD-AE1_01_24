@@ -1,6 +1,7 @@
 package pages;
 
-import enums.ItemBarEnum;
+import enums.BarTypeEnum;
+import enums.BarValuesEnum;
 import org.openqa.selenium.WebDriver;
 import utils.Wait;
 
@@ -11,24 +12,25 @@ public class MainPage extends BasicPage {
     public MainPage (WebDriver driver){
         super(driver);
         driver.get(URL);
-        //PageFactory.initElements(driver,this);
+        this.allBars.put(BarTypeEnum.HEADERBARMAINNAVIGATION, headerBarMainNavigationValue);
+        this.allBars.put(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, headerBarProductNavigationValue);
     }
 
 
     @Override
-    public void openPage(ItemBarEnum itembar) {
+    public void openPage(BarTypeEnum enumType, BarValuesEnum pageValue) {
 
-        headerBar.getHeaderLogo().click();
-        Wait.isElementClickable(headerBar.getHeaderLogo());
+        headerBarMainNavigationValue.getHeaderLogo().click();
+        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
 
     }
 
     @Override
     public void isOpened() {
 
-        Wait.isElementPresented(headerBar.getHeaderLogo());
-        Wait.isElementPresented(headerBar.getTopElement());
-        Wait.isElementClickable(headerBar.getHeaderLogo());
+        Wait.isElementPresented(headerBarMainNavigationValue.getHeaderLogo());
+        Wait.isElementPresented(headerBarMainNavigationValue.getTopElement());
+        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
 
         //return driver.findElements().size() > 0 && driver.findElements(headerBar.getTopElement()).size() > 0;
     }
@@ -36,7 +38,7 @@ public class MainPage extends BasicPage {
     @Override
     public void goToMain() {
 
-        headerBar.getHeaderLogo().click();
-        Wait.isElementClickable(headerBar.getHeaderLogo());
+        headerBarMainNavigationValue.getHeaderLogo().click();
+        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
     }
 }
