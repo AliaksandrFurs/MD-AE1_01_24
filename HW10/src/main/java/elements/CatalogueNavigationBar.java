@@ -1,27 +1,21 @@
 package elements;
 
+import enums.BarTypeEnum;
 import enums.BarValuesEnum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import utils.Wait;
 
-public class CatalogueBar extends BasicBar{
+public class CatalogueNavigationBar extends BasicBar{
 
-    private final static String PATTERN = "//div[contains(@class, 'g-middle-i')]//ul[contains(@class, 'navigation-classifier')]" +
-            "//span[contains(@class,'item-title')]//span[contains(text(),'%s')]";
     WebDriver driver;
+    private static final String PATTERN = "//div[contains(@class, 'catalog-navigation-list__aside-item')]" +
+            "/div[contains(text(),'%s')]";
 
-    public CatalogueBar(WebDriver driver){
+    public CatalogueNavigationBar(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver, this);
-        name = BarValuesEnum.CATALOG.toString();
+        this.name = BarTypeEnum.CATALOGUENAVIGATION.toString();
     }
-
-    @FindBy(className = "catalog-navigation catalog-navigation_opened")
-    private WebElement catalogueBar;
 
     @Override
     public String getBarName() {
@@ -34,7 +28,7 @@ public class CatalogueBar extends BasicBar{
         By xpath = By.xpath(String.format(PATTERN, enumValue.getValue()));
         WebElement catalogueElement = driver.findElement(xpath);
         catalogueElement.click();
-        Wait.isElementPresented(catalogueElement);
+
     }
 
     @Override

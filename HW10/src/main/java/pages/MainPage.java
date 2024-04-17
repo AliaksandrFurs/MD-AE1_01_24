@@ -18,7 +18,7 @@ public class MainPage extends BasicPage {
 
 
     @Override
-    public void openPage(BarTypeEnum enumType, BarValuesEnum pageValue) {
+    public void openPage(BarValuesEnum pageValue) {
 
         headerBarMainNavigationValue.getHeaderLogo().click();
         Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());

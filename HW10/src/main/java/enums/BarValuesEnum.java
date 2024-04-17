@@ -15,7 +15,13 @@ public enum BarValuesEnum {
     PRETTY("Красота и спорт"),
     CHILDREN("Детям и мамам"),
     WORK("Работа и офис"),
-    EAT("Еда");
+    EAT("Еда"),
+    LAPTOPS("Ноутбуки, компьютеры, мониторы"),
+    PARTS("Комплектующие"),
+    DATA("Хранение данных"),
+    NETWORK("Сетевое оборудование"),
+    GAMES("Игры");
+
 
     public String getValue() {
         return value;

@@ -1,5 +1,4 @@
 
-import enums.BarTypeEnum;
 import enums.BarValuesEnum;
 import enums.ProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
@@ -24,7 +23,7 @@ public class FunctionalTest extends BaseTest{
     @BeforeMethod
     public void navigateTo(){
 
-        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, BarValuesEnum.TV);
+        productPage.openPage(BarValuesEnum.TV);
 
     }
 

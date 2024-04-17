@@ -25,7 +25,7 @@ public class ItemBarProductNavigation extends  BasicBar{
     }
 
     @Override
-    public void clickOnBar(BarTypeEnum enumType, BarValuesEnum enumValue) {
+    public void clickOnBar(BarValuesEnum enumValue) {
 
         By xpath = By.xpath(String.format(PATTERN, enumValue.getValue()));
         WebElement catalogueElement = driver.findElement(xpath);
@@ -36,5 +36,11 @@ public class ItemBarProductNavigation extends  BasicBar{
     @Override
     public BasicBar getBar() {
         return this;
+    }
+
+    @Override
+    public boolean isElementPresented(BarValuesEnum elementName) {
+
+        return driver.findElements(By.xpath(String.format(PATTERN, elementName.getValue()))).size() > 0;
     }
 }
