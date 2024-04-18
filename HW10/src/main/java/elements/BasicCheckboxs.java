@@ -1,6 +1,6 @@
 package elements;
 
-import enums.ProducentEnum;
+import enums.product.ProductPageProducentEnum;
 
 public abstract class BasicCheckboxs {
 
@@ -8,7 +8,7 @@ public abstract class BasicCheckboxs {
 
     public abstract String getCheckboxTypeName();
 
-    public abstract void selectCheckbox(ProducentEnum producent);
+    public abstract void selectCheckbox(ProductPageProducentEnum producent);
 
     public abstract BasicCheckboxs getCheckbox();
 }

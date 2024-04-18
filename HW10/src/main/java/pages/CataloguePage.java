@@ -1,54 +1,113 @@
 package pages;
 
-import elements.CatalogueBar;
-import elements.CatalogueNavigationBar;
+import elements.bars.CatalogueBar;
 import enums.BarTypeEnum;
-import enums.BarValuesEnum;
+import enums.catalogue.CatalogueNavigationBarEnum;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import pages.interfaces.CatalogPageActions;
 import utils.Wait;
 
-public class CataloguePage extends BasicPage implements BasicActions{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class CataloguePage extends BasicPage implements CatalogPageActions {
 
     protected CatalogueBar catalogueBar = new CatalogueBar(driver);
-    protected CatalogueNavigationBar catalogueNavigationBar = new CatalogueNavigationBar(driver);
+    protected elements.bars.CatalogueNavigationBar catalogueNavigationBar = new elements.bars.CatalogueNavigationBar(driver);
+    protected List<WebElement> itemPrice = new ArrayList<>();
+    protected List<WebElement> itemQuantity = new ArrayList<>();
+    protected List<WebElement> itemName = new ArrayList<>();
+    protected HashMap<BarTypeEnum, CatalogueBar> catalogueBars = new HashMap<>();
+
+    private By itemPriceLocator = By.xpath("//span[@class='catalog-navigation-list__dropdown-description']/span");
+    private By itemNameLocator = By.className("catalog-navigation-list__dropdown-title");
+    private By itemQuantityLocator = By.className("catalog-navigation-list__dropdown-description");
 
     public CataloguePage (WebDriver driver){
 
         super(driver);
-        allBars.put(BarTypeEnum.CATALOGUENAVIGATION, catalogueNavigationBar);
-        allBars.put(BarTypeEnum.CATALOGUEMAIN, catalogueBar);
+        basicBars.put(BarTypeEnum.CATALOGUENAVIGATION, catalogueNavigationBar);
+        basicBars.put(BarTypeEnum.CATALOGUEMAIN, catalogueBar);
     }
-
 
     @Override
-    public void openPage(BarTypeEnum enumtype, BarValuesEnum pageType) {
-        allBars.get(enumtype).clickOnBar(pageType);
-        if(consentElement.isDisplayed()){
-            acceptButton.click();
+    public void openPage(BarTypeEnum enumType, CatalogueNavigationBarEnum pageName) {
+
+        try {
+            catalogueBars.get(enumType).clickOnBar(pageName);
+        }catch(NoSuchElementException e){
+            System.out.println("No such element");
         }
-        //headerBarMainNavigationValue.clickOnBar(pageType);
+        checkElementsLists();
+        countAndAddItems();
+
     }
+
 
     @Override
     public void isOpened() {
 
-        Wait.isElementPresented(headerBarMainNavigationValue.getHeaderLogo());
-        Wait.isElementPresented(headerBarMainNavigationValue.getTopElement());
-        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
+        Wait.isElementPresented(mainPageTopBarNavigationBar.getHeaderLogo());
+        Wait.isElementPresented(mainPageTopBarNavigationBar.getTopElement());
+        Wait.isElementClickable(mainPageTopBarNavigationBar.getHeaderLogo());
     }
 
     @Override
     public void goToMain() {
 
-        headerBarMainNavigationValue.getHeaderLogo().click();
-        Wait.isElementClickable(headerBarMainNavigationValue.getHeaderLogo());
+        mainPageTopBarNavigationBar.getHeaderLogo().click();
+        Wait.isElementClickable(mainPageTopBarNavigationBar.getHeaderLogo());
     }
+
+    @Override
+    public void skipConsents() {
+
+        if(driver.findElements(consentElement).size() == 1){
+            driver.findElement(acceptButton).click();
+        }
+    }
+
+    private void countAndAddItems(){
+
+        itemPrice = driver.findElements(itemPriceLocator);
+        itemName = driver.findElements(itemNameLocator);
+        itemQuantity = driver.findElements(itemQuantityLocator);
+    }
+
+    private void checkElementsLists(){
+        if(itemPrice.size() > 0){
+            itemPrice.clear();
+        }
+        if(itemQuantity.size() > 0){
+            itemQuantity.clear();
+        }
+        if(itemName.size() > 0){
+            itemName.clear();
+        }
+    }
+
 
     public CatalogueBar getCatalogueBar() {
         return catalogueBar;
     }
 
-    public CatalogueNavigationBar getCatalogueNavigationBar() {
+    public elements.bars.CatalogueNavigationBar getCatalogueNavigationBar() {
         return catalogueNavigationBar;
+    }
+
+    public List<WebElement> getItemPrice() {
+        return itemPrice;
+    }
+
+    public List<WebElement> getItemQuantity() {
+        return itemQuantity;
+    }
+
+    public List<WebElement> getItemName() {
+        return itemName;
     }
 }

@@ -1,13 +1,13 @@
-package enums;
+package enums.product;
 
-public enum ProducentEnum {
+public enum ProductPageProducentEnum {
 
     SAMSUNG("Samsung"),
     LG("LG");
 
     private final String value;
 
-    ProducentEnum(String value){
+    ProductPageProducentEnum(String value){
         this.value = value;
     }
 

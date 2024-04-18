@@ -1,8 +1,9 @@
 package elements;
 
-import enums.ProducentEnum;
+import enums.product.ProductPageProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -24,11 +25,14 @@ public class ProducentCheckboxes extends BasicCheckboxs{
     }
 
     @Override
-    public void selectCheckbox(ProducentEnum producent) {
-
-        By xpath = By.xpath(String.format(PATTERN, producent.getValue()));
-        WebElement itemElement = driver.findElement(xpath);
-        itemElement.click();
+    public void selectCheckbox(ProductPageProducentEnum producent) {
+        try {
+            By xpath = By.xpath(String.format(PATTERN, producent.getValue()));
+            WebElement itemElement = driver.findElement(xpath);
+            itemElement.click();
+        }catch(NoSuchElementException e){
+            System.out.println("No element found");
+        }
 
     }
 

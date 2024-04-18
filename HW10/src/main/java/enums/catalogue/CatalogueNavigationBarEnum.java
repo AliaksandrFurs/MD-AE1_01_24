@@ -1,12 +1,8 @@
-package enums;
+package enums.catalogue;
 
-public enum BarValuesEnum {
+public enum CatalogueNavigationBarEnum {
 
-    SMARTPHONE("Смартфоны"),
-    TV("Телевизоры"),
-    CATALOG("Каталог"),
-    NEWS("Нововсти"),
-    ELECTONIC("Электроника"),
+    ELECTRONIC("Электроника"),
     COMPUTERS("Компьютеры и сети"),
     TECHNICS("Бытовая техника"),
     BUILDING("Стройка и ремонт"),
@@ -29,7 +25,7 @@ public enum BarValuesEnum {
 
     private final String value;
 
-    BarValuesEnum(String value){
+    CatalogueNavigationBarEnum(String value){
         this.value = value;
     }
 }

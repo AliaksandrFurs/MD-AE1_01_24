@@ -1,7 +1,7 @@
 
 import enums.BarTypeEnum;
-import enums.BarValuesEnum;
-import enums.ProducentEnum;
+import enums.main.MainPageProductsNavigationEnum;
+import enums.product.ProductPageProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -24,7 +24,7 @@ public class FunctionalTest extends BaseTest{
     @BeforeMethod
     public void navigateTo(){
 
-        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION,BarValuesEnum.TV);
+        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, MainPageProductsNavigationEnum.TV);
 
     }
 
@@ -38,11 +38,11 @@ public class FunctionalTest extends BaseTest{
     @Test(description = "Selecting checkboxses")
     public void selectSamsungTest(){
 
-        productPage.selectCheckbox(ProductPageCheckboxTypeEnum.PRODUCENT, ProducentEnum.LG);
+        productPage.selectCheckbox(ProductPageCheckboxTypeEnum.PRODUCENT, ProductPageProducentEnum.LG);
 
         String resultText = productPage.getResultElement().getText();
 
-        Assert.assertTrue(resultText.contains(ProducentEnum.LG.toString()), "No LG TV on the list");
+        Assert.assertTrue(resultText.contains(ProductPageProducentEnum.LG.toString()), "No LG TV on the list");
     }
 
 }

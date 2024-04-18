@@ -1,40 +1,34 @@
 package pages;
 
-import elements.BasicBar;
-import elements.BasicCheckboxs;
-import elements.HeaderBarMainNavigation;
-import elements.ItemBarProductNavigation;
+import elements.bars.BasicBar;
+import elements.bars.MainPageTopBarNavigationBar;
+import elements.bars.MainPageProductNavigationBar;
 import enums.BarTypeEnum;
-import enums.ProductPageCheckboxTypeEnum;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
 
-public abstract class BasicPage implements BasicActions {
+public abstract class BasicPage {
 
-    protected HeaderBarMainNavigation headerBarMainNavigationValue;
-    protected ItemBarProductNavigation headerBarProductNavigationValue;
+    protected MainPageTopBarNavigationBar mainPageTopBarNavigationBar;
+    protected MainPageProductNavigationBar mainPageProductNavigationBar;
     protected WebDriver driver;
-    protected HashMap<ProductPageCheckboxTypeEnum, BasicCheckboxs> allCheckboxes = new HashMap<>();
-    protected HashMap<BarTypeEnum, BasicBar> allBars = new HashMap<>();
+    protected HashMap<BarTypeEnum, BasicBar> basicBars = new HashMap<>();
 
     public BasicPage(WebDriver driver){
         this.driver = driver;
-        this.headerBarMainNavigationValue = new HeaderBarMainNavigation(driver);
-        this.headerBarProductNavigationValue = new ItemBarProductNavigation(driver);
-        allBars.put(BarTypeEnum.HEADERBARMAINNAVIGATION, headerBarMainNavigationValue);
-        allBars.put(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, headerBarProductNavigationValue);
+        this.mainPageTopBarNavigationBar = new MainPageTopBarNavigationBar(driver);
+        this.mainPageProductNavigationBar = new MainPageProductNavigationBar(driver);
+        basicBars.put(BarTypeEnum.HEADERBARMAINNAVIGATION, mainPageTopBarNavigationBar);
+        basicBars.put(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, mainPageProductNavigationBar);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='fc-consent-root']")
-    WebElement consentElement;
+     static final By consentElement = By.xpath("//div[@class='fc-consent-root']");
 
-    @FindBy(xpath = "//p[@class='fc-button-label']")
-    WebElement acceptButton;
+     static final By acceptButton = By.xpath("//p[@class='fc-button-label']");
 
 
 }

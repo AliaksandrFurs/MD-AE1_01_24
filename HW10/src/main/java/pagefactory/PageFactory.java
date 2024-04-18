@@ -1,17 +1,9 @@
 package pagefactory;
 
-import elements.BasicBar;
-import elements.BasicCheckboxs;
-import elements.CatalogueBar;
-import elements.ProducentCheckboxes;
-import enums.BarTypeEnum;
-import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.WebDriver;
 import pages.CataloguePage;
 import pages.MainPage;
 import pages.ProductPage;
-
-import java.util.HashMap;
 
 public class PageFactory {
 
