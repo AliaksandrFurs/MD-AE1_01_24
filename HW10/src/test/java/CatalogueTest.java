@@ -1,3 +1,4 @@
+import dataproviders.CatalogueTestDataProvider;
 import enums.BarTypeEnum;
 import enums.catalogue.CatalogueNavigationBarEnum;
 import enums.main.MainPageTopBarEnum;
@@ -41,47 +42,24 @@ public class CatalogueTest extends  BaseTest{
 
     }
 
-    @Test(description = "Validation is catalogue navigation bar is ok")
-    public void catalogueBarTest(){
+    @Test(description = "Validation is catalogue navigation bar is ok", dataProviderClass = CatalogueTestDataProvider.class,
+    dataProvider = "cataloguebartest")
+    public void catalogueBarTest(CatalogueNavigationBarEnum enumValue){
 
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.ELECTRONIC), "No " +
-                " electronic section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.TECHNICS),
-                "No techincs section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.COMPUTERS),
-                "No computers section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.BUILDING),
-                "No building section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.HOUSE),
-                "No house section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.AUTO),
-                "No auto section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.PRETTY),
-                "No pretty section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.CHILDREN),
-                "No schildren section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.WORK),
-                "No work section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.EAT),
-                "No eat section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(enumValue), "No " +
+                enumValue + " section displayed");
+
         softAssert.assertAll();
 
     }
 
-    @Test(description = "Validation is catalogue element navigation bar is ok")
-    public void catalogueNavigationBarTest(){
+    @Test(description = "Validation is catalogue element navigation bar is ok", dataProviderClass = CatalogueTestDataProvider.class,
+    dataProvider = "cataloguenavigationbartest")
+    public void catalogueNavigationBarTest(CatalogueNavigationBarEnum enumValue){
 
         cataloguePage.openPage(BarTypeEnum.CATALOGUEMAIN, CatalogueNavigationBarEnum.COMPUTERS);
-        Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(CatalogueNavigationBarEnum.LAPTOPS),
-                "No laptops section displayed ");
-        Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(CatalogueNavigationBarEnum.PARTS),
-                "No parts section displayed");
-        Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(CatalogueNavigationBarEnum.DATA),
-                "No data section displayed");
-        Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(CatalogueNavigationBarEnum.NETWORK),
-                "Nonetwork section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(CatalogueNavigationBarEnum.GAMES),
-                " No games section displayed");
+        Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(enumValue),
+                "No " + enumValue+ " section displayed ");
         softAssert.assertAll();
     }
 
