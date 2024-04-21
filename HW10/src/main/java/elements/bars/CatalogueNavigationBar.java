@@ -19,21 +19,20 @@ public class CatalogueNavigationBar extends BasicBar implements CatalogueBar {
     }
 
     @Override
-    public void clickOnBar(CatalogueNavigationBarEnum enumValue) {
+    public  void clickOnBar(CatalogueNavigationBarEnum enumType) {
         try {
-            By xpath = By.xpath(String.format(PATTERN, enumValue.getValue()));
+            By xpath = By.xpath(String.format(PATTERN, enumType.getValue()));
             WebElement catalogueElement = driver.findElement(xpath);
             catalogueElement.click();
+
         }catch(NoSuchElementException e){
             System.out.println("No element found");
         }
-
     }
 
     @Override
     public boolean isElementPresented(CatalogueNavigationBarEnum elementName) {
 
-        String xpath = String.format(PATTERN, elementName.getValue());
         return driver.findElements(By.xpath(String.format(PATTERN, elementName.getValue()))).size() > 0;
     }
 

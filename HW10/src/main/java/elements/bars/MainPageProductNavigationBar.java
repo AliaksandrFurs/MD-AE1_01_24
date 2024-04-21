@@ -1,14 +1,15 @@
 package elements.bars;
 
+import elements.interfaces.MainBar;
 import enums.BarTypeEnum;
-import enums.main.MainPageProductsNavigationEnum;
+import enums.main.MainPageTopBarEnum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class MainPageProductNavigationBar extends BasicBar implements elements.interfaces.MainProductNavigationBar {
+public class MainPageProductNavigationBar extends BasicBar implements MainBar {
 
     private static final String PATTERN = "//div//a//span[contains(text(),'%s')]";
     WebDriver driver;
@@ -26,7 +27,7 @@ public class MainPageProductNavigationBar extends BasicBar implements elements.i
     }
 
     @Override
-    public void clickOnBar(MainPageProductsNavigationEnum enumValue) {
+    public void clickOnBar(MainPageTopBarEnum enumValue) {
         try {
             By xpath = By.xpath(String.format(PATTERN, enumValue.getValue()));
             WebElement catalogueElement = driver.findElement(xpath);
@@ -38,13 +39,14 @@ public class MainPageProductNavigationBar extends BasicBar implements elements.i
     }
 
     @Override
+    public boolean isElementPresented(MainPageTopBarEnum elementName) {
+
+        return driver.findElements(By.xpath(String.format(PATTERN, elementName.getValue()))).size() > 0;
+    }
+
+    @Override
     public BasicBar getBar() {
         return this;
     }
 
-    @Override
-    public boolean isElementPresented(MainPageProductsNavigationEnum elementName) {
-
-        return driver.findElements(By.xpath(String.format(PATTERN, elementName.getValue()))).size() > 0;
-    }
 }

@@ -1,6 +1,5 @@
 package pages;
 
-import elements.bars.MainPageTopBarNavigationBar;
 import enums.BarTypeEnum;
 import enums.main.MainPageTopBarEnum;
 import org.openqa.selenium.NoSuchElementException;
@@ -8,24 +7,25 @@ import org.openqa.selenium.WebDriver;
 import pages.interfaces.MainPageActions;
 import utils.Wait;
 
-import java.util.HashMap;
-
 public class MainPage extends BasicPage implements MainPageActions {
 
     public static  final String URL = "https://www.onliner.by/";
-    protected HashMap<BarTypeEnum, MainPageTopBarNavigationBar> mainBar = new HashMap<>();
 
     public MainPage (WebDriver driver){
+
         super(driver);
         driver.get(URL);
-        mainBar.put(BarTypeEnum.HEADERBARMAINNAVIGATION, mainPageTopBarNavigationBar);
     }
 
 
     @Override
     public void openPage(BarTypeEnum enumType, MainPageTopBarEnum pageValue) {
         try {
-            mainBar.get(enumType).clickOnBar(pageValue);
+
+            switch(enumType){
+                case HEADERBARMAINNAVIGATION -> mainPageTopBarNavigationBar.clickOnBar(pageValue);
+                case HEADERBARPRODUCTNAVIGATION -> mainPageProductNavigationBar.clickOnBar(pageValue);
+            }
             Wait.isElementClickable(mainPageTopBarNavigationBar.getHeaderLogo());
         }catch(NoSuchElementException e){
             System.out.println("No such element");

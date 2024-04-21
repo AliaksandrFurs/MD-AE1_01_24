@@ -46,20 +46,29 @@ public class CatalogueTest extends  BaseTest{
 
         softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.ELECTRONIC), "No " +
                 " electronic section displayed");
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.TECHNICS));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.COMPUTERS));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.BUILDING));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.HOUSE));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.AUTO));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.PRETTY));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.CHILDREN));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.WORK));
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.EAT));
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.TECHNICS),
+                "No techincs section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.COMPUTERS),
+                "No computers section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.BUILDING),
+                "No building section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.HOUSE),
+                "No house section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.AUTO),
+                "No auto section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.PRETTY),
+                "No pretty section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.CHILDREN),
+                "No schildren section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.WORK),
+                "No work section displayed");
+        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(CatalogueNavigationBarEnum.EAT),
+                "No eat section displayed");
         softAssert.assertAll();
 
     }
 
-    @Test()
+    @Test(description = "Validation is catalogue element navigation bar is ok")
     public void catalogueNavigationBarTest(){
 
         cataloguePage.openPage(BarTypeEnum.CATALOGUEMAIN, CatalogueNavigationBarEnum.COMPUTERS);
@@ -76,7 +85,7 @@ public class CatalogueTest extends  BaseTest{
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(description = "Validation is items are ok")
     public void itemsBasicTest(){
 
         cataloguePage.openPage(BarTypeEnum.CATALOGUEMAIN, CatalogueNavigationBarEnum.COMPUTERS);

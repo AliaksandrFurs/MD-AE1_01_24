@@ -1,6 +1,6 @@
 package enums.catalogue;
 
-public enum CatalogueNavigationBarEnum {
+public enum CatalogueNavigationBarEnum  {
 
     ELECTRONIC("Электроника"),
     COMPUTERS("Компьютеры и сети"),
@@ -19,7 +19,7 @@ public enum CatalogueNavigationBarEnum {
     GAMES("Игры");
 
 
-    public String getValue() {
+    public  String getValue() {
         return value;
     }
 
@@ -28,4 +28,6 @@ public enum CatalogueNavigationBarEnum {
     CatalogueNavigationBarEnum(String value){
         this.value = value;
     }
+
+
 }

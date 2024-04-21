@@ -4,7 +4,7 @@ import enums.catalogue.CatalogueNavigationBarEnum;
 
 public interface CatalogueBar {
 
-    public abstract void clickOnBar(CatalogueNavigationBarEnum enumValue);
+    public abstract  void clickOnBar(CatalogueNavigationBarEnum enumType);
 
-    public abstract boolean isElementPresented(CatalogueNavigationBarEnum elementName);
+    public abstract  boolean isElementPresented(CatalogueNavigationBarEnum enumType);
 }

@@ -2,9 +2,8 @@ package pages;
 
 import elements.BasicCheckboxs;
 import elements.ProducentCheckboxes;
-import elements.bars.MainPageProductNavigationBar;
 import enums.BarTypeEnum;
-import enums.main.MainPageProductsNavigationEnum;
+import enums.main.MainPageTopBarEnum;
 import enums.product.ProductPageProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 public class ProductPage extends BasicPage implements ElementActions, ProductPageActions {
 
     protected HashMap<ProductPageCheckboxTypeEnum, BasicCheckboxs> productPageCheckboxes = new HashMap<>();
-    protected HashMap<BarTypeEnum, MainPageProductNavigationBar> productPageBar = new HashMap<>();
 
     public ProductPage(WebDriver driver){
 
@@ -41,10 +39,12 @@ public class ProductPage extends BasicPage implements ElementActions, ProductPag
     private WebElement resultElement;
 
     @Override
-    public void openPage(BarTypeEnum enumType, MainPageProductsNavigationEnum pageName) {
+    public void openPage(BarTypeEnum enumType, MainPageTopBarEnum pageName) {
 
         try {
-            productPageBar.get(enumType).clickOnBar(pageName);
+            switch(enumType){
+                case HEADERBARPRODUCTNAVIGATION -> mainPageProductNavigationBar.clickOnBar(pageName);
+            }
         }catch(NoSuchElementException e){
             System.out.println("No such element");
         }

@@ -1,6 +1,6 @@
 
 import enums.BarTypeEnum;
-import enums.main.MainPageProductsNavigationEnum;
+import enums.main.MainPageTopBarEnum;
 import enums.product.ProductPageProducentEnum;
 import enums.ProductPageCheckboxTypeEnum;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ public class FunctionalTest extends BaseTest{
     @BeforeMethod
     public void navigateTo(){
 
-        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, MainPageProductsNavigationEnum.TV);
+        productPage.openPage(BarTypeEnum.HEADERBARPRODUCTNAVIGATION, MainPageTopBarEnum.TV);
 
     }
 

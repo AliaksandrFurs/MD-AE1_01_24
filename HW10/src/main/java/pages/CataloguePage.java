@@ -9,9 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.interfaces.CatalogPageActions;
 import utils.Wait;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CataloguePage extends BasicPage implements CatalogPageActions {
@@ -21,7 +19,6 @@ public class CataloguePage extends BasicPage implements CatalogPageActions {
     protected List<WebElement> itemPrice = new ArrayList<>();
     protected List<WebElement> itemQuantity = new ArrayList<>();
     protected List<WebElement> itemName = new ArrayList<>();
-    protected HashMap<BarTypeEnum, CatalogueBar> catalogueBars = new HashMap<>();
 
     private By itemPriceLocator = By.xpath("//span[@class='catalog-navigation-list__dropdown-description']/span");
     private By itemNameLocator = By.className("catalog-navigation-list__dropdown-title");
@@ -30,15 +27,20 @@ public class CataloguePage extends BasicPage implements CatalogPageActions {
     public CataloguePage (WebDriver driver){
 
         super(driver);
-        basicBars.put(BarTypeEnum.CATALOGUENAVIGATION, catalogueNavigationBar);
-        basicBars.put(BarTypeEnum.CATALOGUEMAIN, catalogueBar);
+
     }
 
     @Override
     public void openPage(BarTypeEnum enumType, CatalogueNavigationBarEnum pageName) {
 
         try {
-            catalogueBars.get(enumType).clickOnBar(pageName);
+            switch(enumType){
+                case CATALOGUEMAIN:
+                    catalogueBar.clickOnBar(pageName);
+                    break;
+                case CATALOGUENAVIGATION:
+                    catalogueNavigationBar.clickOnBar(pageName);
+            }
         }catch(NoSuchElementException e){
             System.out.println("No such element");
         }
