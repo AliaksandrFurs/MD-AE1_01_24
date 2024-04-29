@@ -46,10 +46,10 @@ public class CatalogueTest extends  BaseTest{
     dataProvider = "cataloguebartest")
     public void catalogueBarTest(CatalogueNavigationBarEnum enumValue){
 
-        softAssert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(enumValue), "No " +
+        Assert.assertTrue(cataloguePage.getCatalogueBar().isElementPresented(enumValue), "No " +
                 enumValue + " section displayed");
 
-        softAssert.assertAll();
+        //softAssert.assertAll();
 
     }
 
@@ -60,7 +60,7 @@ public class CatalogueTest extends  BaseTest{
         cataloguePage.openPage(BarTypeEnum.CATALOGUEMAIN, CatalogueNavigationBarEnum.COMPUTERS);
         Assert.assertTrue(cataloguePage.getCatalogueNavigationBar().isElementPresented(enumValue),
                 "No " + enumValue+ " section displayed ");
-        softAssert.assertAll();
+        //softAssert.assertAll();
     }
 
     @Test(description = "Validation is items are ok")
@@ -71,18 +71,19 @@ public class CatalogueTest extends  BaseTest{
         for(WebElement element: cataloguePage.getItemName()){
 
             softAssert.assertTrue(element.getText().length() > 0, "No name available");
-            softAssert.assertAll();
+            //softAssert.assertAll();
         }
         for(WebElement element : cataloguePage.getItemPrice()){
 
             softAssert.assertTrue(element.getText().length() > 0, "No price available");
-            softAssert.assertAll();
+            //softAssert.assertAll();
         }
         for(WebElement element : cataloguePage.getItemQuantity()){
 
             softAssert.assertTrue(element.getText().length() > 0, "No quantity available");
-            softAssert.assertAll();
+            //softAssert.assertAll();
         }
+        softAssert.assertAll();
 
     }
 }
