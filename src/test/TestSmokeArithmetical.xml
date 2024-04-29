@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke arithmetical test">
+    <test name="Smoke arithmetical">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="arithmetical"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="Functionaltests.Arithmetical"></package>
+        </packages>
+    </test>
+</suite>
