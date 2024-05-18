@@ -1,10 +1,24 @@
 package org.example.entities;
 
+import org.example.controller.CreateEntity;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String name;
     private String adress;
-    private int userId;
+    private List<Accounts> userAccountsList = new ArrayList<>();
+    //private int userId;
+
+    public User(String name, String adress){
+
+        CreateEntity.createUser(name,adress);
+        this.name = name;
+        this.adress = adress;
+    }
 
     public String getName() {
         return name;
@@ -22,11 +36,12 @@ public class User {
         this.adress = adress;
     }
 
-    public int getUserId() {
-        return userId;
+    public List<Accounts> getUserAccountsList() {
+        return userAccountsList;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void addAccount(BigDecimal balance, String currency){
+
+        userAccountsList.add(new Accounts(balance, currency));
     }
 }

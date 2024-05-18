@@ -1,12 +1,23 @@
 package org.example.entities;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Accounts {
 
-    private float balance;
+    private BigDecimal balance;
     private String currency;
     private int accountId;
+    private List<Transactions> accountTransactionList = new ArrayList<>();
 
-    public float getBalance() {
+    public Accounts(BigDecimal balance, String currency) {
+        this.balance = balance;
+        this.currency = currency;
+    }
+
+
+    public BigDecimal getBalance() {
         return balance;
     }
 
@@ -14,7 +25,7 @@ public class Accounts {
         return currency;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
