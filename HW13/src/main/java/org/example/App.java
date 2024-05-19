@@ -19,7 +19,7 @@ public class App
 
         double value= 259;
 
-        BigDecimal bd = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal bd = new BigDecimal(value).setScale(3, RoundingMode.HALF_UP);
 
         List<User> userList = new ArrayList<>();
         EntityController.addUser(userList, "Mateusz", "Warshaw");
