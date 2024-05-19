@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.database.Create;
 import org.example.database.Select;
-import org.example.utils.DatabaseUtils;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -43,10 +42,10 @@ public class DatabaseController {
         ResultSet resultSet = null;
 
         try {
-            resultSet = select.selectUser(userName);
+            resultSet = select.selectUserRecord(userName);
 
             if (resultSet.next() == false) {
-                create.createUser(userName, address);
+                create.createUserRecord(userName, address);
 
             } else {
                 System.out.println("Unable to create user");
@@ -66,7 +65,7 @@ public class DatabaseController {
         boolean isRecordExists = false;
 
         try {
-            resultSet = select.selectUser(userName);
+            resultSet = select.selectUserRecord(userName);
 
             if (resultSet.next()) {
                 isRecordExists = true;
@@ -81,7 +80,7 @@ public class DatabaseController {
         if (isRecordExists == true) {
 
             try{
-                create.createAccount(resultSet.getInt("userId"),balance,currency);
+                create.createAccountRecord(resultSet.getInt("userId"),balance,currency);
 
             }catch(SQLException e ){
                 System.out.println("Record exists in DB");

@@ -9,7 +9,7 @@ public class Select extends BaseClass{
 
     PreparedStatement preStatement = null;
 
-    public ResultSet selectUser(String name){
+    public ResultSet selectUserRecord(String name){
 
         ResultSet resultSet = null;
         try{

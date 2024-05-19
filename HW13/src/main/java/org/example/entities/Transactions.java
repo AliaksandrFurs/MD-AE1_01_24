@@ -1,16 +1,18 @@
 package org.example.entities;
 
+import java.math.BigDecimal;
+
 public class Transactions {
 
-    private float amount;
+    private BigDecimal amount;
     private int transactionId;
     private int accountId;
 
-    public float getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

@@ -1,10 +1,7 @@
 package org.example.database;
 
-import org.example.entities.User;
-
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.List;
 
 public class Create extends BaseClass{
 
@@ -33,7 +30,7 @@ public class Create extends BaseClass{
 
     }
 
-    public void createUser(String userName, String address){
+    public void createUserRecord(String userName, String address){
 
         try{
             conn.close();
@@ -49,7 +46,7 @@ public class Create extends BaseClass{
         }
     }
 
-    public void createAccount(int userId, BigDecimal balance, String currency){
+    public void createAccountRecord(int userId, BigDecimal balance, String currency){
 
         try{
             conn.close();
@@ -67,7 +64,7 @@ public class Create extends BaseClass{
 
     }
 
-    public void createTransaction(int accountId, BigDecimal amount){
+    public void createTransactionRecord(int accountId, BigDecimal amount){
 
         try{
             conn.close();
