@@ -42,10 +42,10 @@ public class Create extends BaseClass{
             preStatement.setString(1, userName);
             preStatement.setString(2, address);
             preStatement.executeUpdate();
-            System.out.println("User created successfully");
+            System.out.println("User record created successfully");
 
         }catch(SQLException e){
-            System.out.println("Unable to insert users to  DB");
+            System.out.println("Unable to insert user record to  DB");
         }
     }
 
@@ -59,10 +59,10 @@ public class Create extends BaseClass{
             preStatement.setBigDecimal(2, balance);
             preStatement.setString(3, currency);
             preStatement.executeUpdate();
-            System.out.println("Account inserted to DB");
+            System.out.println("Account record inserted to DB");
 
         }catch(SQLException e){
-            System.out.println("Unable to insert account to  DB");
+            System.out.println("Unable to insert account record to  DB");
         }
 
     }
@@ -78,7 +78,7 @@ public class Create extends BaseClass{
             preStatement.executeUpdate();
 
         }catch(SQLException e){
-            System.out.println("Unable to insert transaction to  DB");
+            System.out.println("Unable to insert transaction record to  DB");
         }
 
     }

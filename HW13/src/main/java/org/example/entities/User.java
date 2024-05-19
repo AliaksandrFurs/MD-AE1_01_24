@@ -1,6 +1,6 @@
 package org.example.entities;
 
-import org.example.controller.CreateEntity;
+import org.example.controller.DatabaseController;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ public class User {
     //private int userId;
 
     public User(String name, String adress){
-
-        CreateEntity.createUser(name,adress);
         this.name = name;
         this.adress = adress;
     }
@@ -24,20 +22,9 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAdress() {
         return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public List<Accounts> getUserAccountsList() {
-        return userAccountsList;
     }
 
     public void addAccount(BigDecimal balance, String currency){

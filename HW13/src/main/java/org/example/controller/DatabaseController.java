@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.database.Create;
 import org.example.database.Select;
-import org.example.entities.User;
 import org.example.utils.DatabaseUtils;
 
 import java.math.BigDecimal;
@@ -10,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CreateEntity {
+public class DatabaseController {
 
     static Create create = new Create();
     static Select select = new Select();
@@ -19,7 +18,7 @@ public class CreateEntity {
 
     public static Connection conn = null;
 
-    public CreateEntity() {
+    public DatabaseController() {
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -64,29 +63,28 @@ public class CreateEntity {
     public static void createAccount(String userName, BigDecimal balance, String currency) {
 
         ResultSet resultSet = null;
-        boolean isBalanceOk = DatabaseUtils.isBalanceOk(balance);
-        boolean isUserExists = false;
+        boolean isRecordExists = false;
 
         try {
             resultSet = select.selectUser(userName);
 
             if (resultSet.next()) {
-                isUserExists = true;
+                isRecordExists = true;
 
             } else {
-                isUserExists = false;
+                isRecordExists = false;
             }
 
         } catch (SQLException e) {
 
         }
-        if (isBalanceOk == true && isUserExists == true) {
+        if (isRecordExists == true) {
 
             try{
                 create.createAccount(resultSet.getInt("userId"),balance,currency);
 
             }catch(SQLException e ){
-                System.out.println("Unable");
+                System.out.println("Record exists in DB");
 
             }finally{
                 closeConnection();
