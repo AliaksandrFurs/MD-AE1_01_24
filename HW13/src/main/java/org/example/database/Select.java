@@ -23,8 +23,6 @@ public class Select extends BaseClass{
 
         }catch(SQLException e){
             Print.consolePrint("Unable select users from  DB");
-        }finally{
-            closeConnection();
         }
         return  resultSet;
     }

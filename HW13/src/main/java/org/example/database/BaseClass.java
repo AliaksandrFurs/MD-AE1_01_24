@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class BaseClass {
 
-    public String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\37529\\IdeaProjects\\MD-AE1_01_24\\HW13\\HW13.db";
+    public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\37529\\IdeaProjects\\MD-AE1_01_24\\HW13\\HW13.db";
     public static final String INSERT_USER_STRING = "INSERT INTO USERS (name, address) VALUES (?, ?)";
     public static final String SELECT_USER_STRING = "SELECT * FROM USERS WHERE name=?";
     public static final String INSERT_ACCOUNT_STRING = "INSERT INTO ACCOUNTS (userId, balance, currency) VALUES (?, ?, ?)";
