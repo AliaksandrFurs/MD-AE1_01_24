@@ -1,5 +1,7 @@
 package org.example.database;
 
+import org.example.utils.Print;
+
 import java.math.BigDecimal;
 import java.sql.*;
 
@@ -56,14 +58,13 @@ public class Create extends BaseClass{
             preStatement.setBigDecimal(2, balance);
             preStatement.setString(3, currency);
             preStatement.executeUpdate();
-            System.out.println("Account record inserted to DB");
+            Print.consolePrint("Account record inserted to DB");
 
 
         }catch(SQLException e){
-            System.out.println("Unable to insert account record to  DB");
+            Print.consolePrint("Unable to insert account record to  DB");
 
         }
-
     }
 
     public void createTransactionRecord(int accountId, BigDecimal amount){
@@ -77,7 +78,7 @@ public class Create extends BaseClass{
             preStatement.executeUpdate();
 
         }catch(SQLException e){
-            System.out.println("Unable to insert transaction record to  DB");
+            Print.consolePrint("Unable to insert transaction record to  DB");
         }
 
     }

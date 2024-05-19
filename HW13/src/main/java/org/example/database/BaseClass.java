@@ -1,5 +1,7 @@
 package org.example.database;
 
+import org.example.utils.Print;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +20,7 @@ public class BaseClass {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
-            System.out.println("No sql lite driver");
+            Print.consolePrint("No sql lite driver");
         }
     }
 

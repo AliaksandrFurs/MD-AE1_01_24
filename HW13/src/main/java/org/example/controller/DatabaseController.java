@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.database.Create;
 import org.example.database.Select;
+import org.example.utils.Print;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class DatabaseController {
                 create.createUserRecord(userName, address);
 
             } else {
-                System.out.println("Unable to create user");
+                Print.consolePrint("Unable to create user");
             }
 
         } catch (SQLException e) {
@@ -83,7 +84,7 @@ public class DatabaseController {
                 return  true;
 
             }catch(SQLException e ){
-                System.out.println("Account alreaaady exists in DB");
+                Print.consolePrint("Account alreaaady exists in DB");
                 return false;
 
             }finally{
@@ -91,7 +92,7 @@ public class DatabaseController {
             }
 
         }else{
-            System.out.println("SMTH goes wrong");
+            Print.consolePrint("SMTH goes wrong");
         }
         return false;
     }

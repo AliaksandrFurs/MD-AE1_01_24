@@ -1,5 +1,7 @@
 package org.example.database;
 
+import org.example.utils.Print;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +22,7 @@ public class Select extends BaseClass{
             return resultSet;
 
         }catch(SQLException e){
-            System.out.println("Unable select users from  DB");
+            Print.consolePrint("Unable select users from  DB");
         }finally{
             closeConnection();
         }

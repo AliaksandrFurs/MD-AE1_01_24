@@ -1,8 +1,8 @@
 package org.example.controller;
 
-import org.example.entities.Accounts;
 import org.example.entities.User;
 import org.example.utils.BasicVerificationUtils;
+import org.example.utils.Print;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,17 +22,17 @@ public class EntityController {
                         boolean isRecordInserted = DatabaseController.createAccount(userName, balance, currency);
                         if(isRecordInserted == true) {
                             user.addAccount(balance, currency);
-                            System.out.println("Account created successfully");
+                            Print.consolePrint("Account created successfully");
                         }else{
-                            System.out.println("Unable to create account");
+                            Print.consolePrint("Unable to create account");
                         }
                     }else{
-                        System.out.println("Unable to create account");
+                        Print.consolePrint("Unable to create account");
                     }
                 }
             }
         }else{
-            System.out.println("Unable to create account");
+            Print.consolePrint("Unable to create account");
         }
 
     }
