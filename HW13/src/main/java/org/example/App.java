@@ -25,12 +25,9 @@ public class App
         List<User> userList = new ArrayList<>();
         BusinessInteractions.createUser(userList, "Mateusz", "Warshaw");
         BusinessInteractions.createUser(userList, "Alex", "Warshaw");
-        //EntityController.addUser(userList, "Mateusz", "Warshaw");
-        //EntityController.addAccount(userList, "Mateusz", bd, "EUR");
-        //EntityController.addAccount(userList, "Mateusz", bd, "EUR");
-        EntityController.addAccount(userList, "Mateusz", bd, "EUR");
-        EntityController.addAccount(userList, "Mateusz", bd, "GBP");
-        EntityController.addAccount(userList, "Alex", bd, "USD");
+        BusinessInteractions.createAccount(userList, "Mateusz", bd, "EUR");
+        BusinessInteractions.createAccount(userList, "Mateusz", bd, "GBP");
+        BusinessInteractions.createAccount(userList, "Alex", bd, "USD");
         BusinessInteractions.deposit(userList,"Mateusz", "EUR", bd);
         BusinessInteractions.deposit(userList,"Mateusz", "EUR", bd);
         BusinessInteractions.withdraw(userList,"Mateusz", "EUR", bd);

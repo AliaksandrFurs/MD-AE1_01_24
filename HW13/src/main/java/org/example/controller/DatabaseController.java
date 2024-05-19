@@ -26,24 +26,25 @@ public class DatabaseController {
         }
     }
 
-    public static void createUser(String userName, String address) {
+    public static boolean createUser(String userName, String address) {
 
-        ResultSet resultSet = null;
+        ResultSet resultSet;
 
         try {
             resultSet = select.selectUserRecord(userName);
 
             if (resultSet.next() == false) {
                 create.createUserRecord(userName, address);
+                return true;
 
             } else {
-                Print.consolePrint("Unable to create user");
+                return false;
             }
 
         } catch (SQLException e) {
 
         }
-
+    return false;
     }
 
     public static boolean createAccount(String userName, BigDecimal balance, String currency) {

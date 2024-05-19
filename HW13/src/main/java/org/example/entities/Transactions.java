@@ -8,6 +8,10 @@ public class Transactions {
     private int transactionId;
     private int accountId;
 
+    public Transactions(BigDecimal amount){
+        this.amount = amount;
+    }
+
     public BigDecimal getAmount() {
         return amount;
     }

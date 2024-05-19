@@ -40,4 +40,12 @@ public class Accounts {
     public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
+
+    public List<Transactions> getAccountTransactionList() {
+        return accountTransactionList;
+    }
+
+    public void setAccountTransactionList(List<Transactions> accountTransactionList) {
+        this.accountTransactionList = accountTransactionList;
+    }
 }
