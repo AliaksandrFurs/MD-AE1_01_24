@@ -29,7 +29,7 @@ public class BasicVerificationUtils {
         return true;
     }
 
-    public static boolean isAccountinSuchCurrencyExists(User user, String currency) {
+    public static boolean isAccountInSuchCurrencyExists(User user, String currency) {
 
         List<Accounts> userAccountsList = user.getUserAccountsList();
 
@@ -37,15 +37,39 @@ public class BasicVerificationUtils {
             for (Accounts userAccount : userAccountsList) {
                 if (userAccount.getCurrency().equals(currency)) {
                     return true;
-                } else {
-                    return false;
                 }
             }
         }
         return false;
     }
 
+    public static boolean isUserExists(List<User> userList, String userName){
+        for(User user : userList){
+            if(user.getName().equals(userName)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public static boolean isFinalSumOk(BigDecimal balance, BigDecimal amount, String operationType){
+
+        BigDecimal finalSum = new BigDecimal(String.valueOf(balance)).setScale(2, RoundingMode.HALF_UP);
+        switch(operationType){
+            case "+":
+                finalSum.add(amount);
+                break;
+            case "-":
+                finalSum.subtract(amount);
+                break;
+        }
+        if(finalSum.compareTo(balanceLimit) > 0 || finalSum.compareTo(BigDecimal.ZERO) < 0){
+            return false;
+
+        }else {
+            return true;
+        }
+    }
 }
 
 

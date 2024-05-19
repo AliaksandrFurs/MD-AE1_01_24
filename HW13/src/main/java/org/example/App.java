@@ -23,10 +23,12 @@ public class App
 
         List<User> userList = new ArrayList<>();
         EntityController.addUser(userList, "Mateusz", "Warshaw");
-        EntityController.addUser(userList, "Mateusz", "Warshaw");
-        EntityController.addAccount(userList, "Mateusz", bd, "EUR");
+        //EntityController.addUser(userList, "Mateusz", "Warshaw");
+        //EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         EntityController.addAccount(userList, "Mateusz", bd, "GBP");
+        EntityController.addTransaction(userList,"Mateusz", "EUR", "+", bd);
+        EntityController.addTransaction(userList,"Mateusz", "EUR", "+", bd);
 
 
 

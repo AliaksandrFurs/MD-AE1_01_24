@@ -11,16 +11,30 @@ public class DatabaseCommonUtils {
 
     public static int getUserIdFromResultSet(String userName){
 
-        ResultSet resultSet = null;
+        ResultSet userResultSet;
         int userId;
 
         try{
-            resultSet = select.selectUserRecord(userName);
-            userId = resultSet.getInt("userId");
-            resultSet.close();
+            userResultSet = select.selectUserRecord(userName);
+            userId = userResultSet.getInt("userId");
+            userResultSet.close();
             return userId;
 
         }catch  (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int getAccountIdFromResultSet(int userId, String currency){
+        ResultSet accountResultSet;
+        int accountId;
+
+        try{
+            accountResultSet = select.selectAccountRecord(currency);
+            accountId = accountResultSet.getInt("accountId");
+            accountResultSet.close();
+            return accountId;
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
