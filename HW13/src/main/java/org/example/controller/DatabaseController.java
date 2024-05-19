@@ -2,6 +2,8 @@ package org.example.controller;
 
 import org.example.database.Create;
 import org.example.database.Select;
+import org.example.utils.DatabaseCommonUtils;
+import org.example.utils.DatabaseVerificationUtils;
 import org.example.utils.Print;
 
 import java.math.BigDecimal;
@@ -44,45 +46,16 @@ public class DatabaseController {
 
     public static boolean createAccount(String userName, BigDecimal balance, String currency) {
 
-        ResultSet userResultSet = null;
-        ResultSet accountResultSet = null;
-        boolean isUserExists = false;
-        boolean isAccountInCurrencyExists = true;
+        int userId = DatabaseCommonUtils.getUserIdFromResultSet(userName);
+        boolean isUserExists = DatabaseVerificationUtils.isUserRecordExists(userName);
+        boolean isAccountInCurrencyExists = DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency);
 
-        try {
-            userResultSet = select.selectUserRecord(userName);
-            accountResultSet = select.selectAccountRecord(currency);
-
-            if (userResultSet.next()) {
-                isUserExists = true;
-
-            } else {
-                isUserExists = false;
-            }
-
-            if (accountResultSet.next()) {
-                isAccountInCurrencyExists = true;
-
-            } else {
-                isAccountInCurrencyExists = false;
-            }
-
-        } catch (SQLException e) {
-
-        }
         if (isUserExists == true && isAccountInCurrencyExists == false) {
-            try{
-                create.createAccountRecord(userResultSet.getInt("userId"),balance,currency);
-                return  true;
-
-            }catch(SQLException e ){
-                Print.consolePrint("Account alreaaady exists in DB");
-                return false;
-
-            }
+            create.createAccountRecord(userId,balance,currency);
+            return  true;
 
         }else{
-            Print.consolePrint("SMTH goes wrong");
+            Print.consolePrint("Unable to create account");
         }
         return false;
     }

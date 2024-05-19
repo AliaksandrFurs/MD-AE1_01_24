@@ -26,6 +26,7 @@ public class App
         EntityController.addUser(userList, "Mateusz", "Warshaw");
         EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         EntityController.addAccount(userList, "Mateusz", bd, "EUR");
+        EntityController.addAccount(userList, "Mateusz", bd, "GBP");
 
 
 
