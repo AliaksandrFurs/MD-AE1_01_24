@@ -44,25 +44,35 @@ public class DatabaseController {
 
     public static boolean createAccount(String userName, BigDecimal balance, String currency) {
 
-        ResultSet resultSet = null;
-        boolean isRecordExists = false;
+        ResultSet userResultSet = null;
+        ResultSet accountResultSet = null;
+        boolean isUserExists = false;
+        boolean isAccountInCurrencyExists = true;
 
         try {
-            resultSet = select.selectUserRecord(userName);
+            userResultSet = select.selectUserRecord(userName);
+            accountResultSet = select.selectAccountRecord(currency);
 
-            if (resultSet.next()) {
-                isRecordExists = true;
+            if (userResultSet.next()) {
+                isUserExists = true;
 
             } else {
-                isRecordExists = false;
+                isUserExists = false;
+            }
+
+            if (accountResultSet.next()) {
+                isAccountInCurrencyExists = true;
+
+            } else {
+                isAccountInCurrencyExists = false;
             }
 
         } catch (SQLException e) {
 
         }
-        if (isRecordExists == true) {
+        if (isUserExists == true && isAccountInCurrencyExists == false) {
             try{
-                create.createAccountRecord(resultSet.getInt("userId"),balance,currency);
+                create.createAccountRecord(userResultSet.getInt("userId"),balance,currency);
                 return  true;
 
             }catch(SQLException e ){

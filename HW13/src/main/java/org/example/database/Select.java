@@ -27,4 +27,20 @@ public class Select extends BaseClass{
         return  resultSet;
     }
 
+    public ResultSet selectAccountRecord(String currency){
+
+        ResultSet resultSet = null;
+        try{
+            conn = DriverManager.getConnection(CONNECTION_STRING);
+            preStatement = conn.prepareStatement(SELECT_ACCOUNT_STRING);
+            preStatement.setString(1, currency);
+            resultSet = preStatement.executeQuery();
+            return resultSet;
+
+        }catch(SQLException e){
+            Print.consolePrint("Unable select accounts from  DB");
+        }
+        return  resultSet;
+    }
+
 }
