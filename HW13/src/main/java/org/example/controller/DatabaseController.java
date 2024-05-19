@@ -59,7 +59,7 @@ public class DatabaseController {
 
     }
 
-    public static void createAccount(String userName, BigDecimal balance, String currency) {
+    public static boolean createAccount(String userName, BigDecimal balance, String currency) {
 
         ResultSet resultSet = null;
         boolean isRecordExists = false;
@@ -78,12 +78,13 @@ public class DatabaseController {
 
         }
         if (isRecordExists == true) {
-
             try{
                 create.createAccountRecord(resultSet.getInt("userId"),balance,currency);
+                return  true;
 
             }catch(SQLException e ){
-                System.out.println("Record exists in DB");
+                System.out.println("Account alreaaady exists in DB");
+                return false;
 
             }finally{
                 closeConnection();
@@ -92,6 +93,7 @@ public class DatabaseController {
         }else{
             System.out.println("SMTH goes wrong");
         }
+        return false;
     }
 
     public  void createTransaction(){

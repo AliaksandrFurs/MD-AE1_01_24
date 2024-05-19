@@ -21,6 +21,8 @@ public class Select extends BaseClass{
 
         }catch(SQLException e){
             System.out.println("Unable select users from  DB");
+        }finally{
+            closeConnection();
         }
         return  resultSet;
     }

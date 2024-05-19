@@ -1,7 +1,11 @@
 package org.example.utils;
 
+import org.example.entities.Accounts;
+import org.example.entities.User;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 public class BasicVerificationUtils {
 
@@ -24,4 +28,23 @@ public class BasicVerificationUtils {
         }
         return true;
     }
+
+    public static boolean isAccountinSuchCurrencyExists(User user, String currency) {
+
+        List<Accounts> userAccountsList = user.getUserAccountsList();
+
+        if (userAccountsList.size() > 0) {
+            for (Accounts userAccount : userAccountsList) {
+                if (userAccount.getCurrency().equals(currency)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 }
+
+
+

@@ -27,6 +27,19 @@ public class User {
         return adress;
     }
 
+    public Accounts getAccount(String currency){
+        for(Accounts account : userAccountsList){
+            if(account.getCurrency().equals(currency)){
+                return account;
+            }
+        }
+       return null;
+    }
+
+    public List<Accounts> getUserAccountsList() {
+        return userAccountsList;
+    }
+
     public void addAccount(BigDecimal balance, String currency){
 
         userAccountsList.add(new Accounts(balance, currency));

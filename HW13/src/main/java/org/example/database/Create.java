@@ -58,8 +58,10 @@ public class Create extends BaseClass{
             preStatement.executeUpdate();
             System.out.println("Account record inserted to DB");
 
+
         }catch(SQLException e){
             System.out.println("Unable to insert account record to  DB");
+
         }
 
     }
