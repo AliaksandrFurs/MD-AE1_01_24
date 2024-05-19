@@ -43,49 +43,26 @@ public class EntityController {
 
     public static void addUser(List<User> userList, String userName, String address){
 
-        if(userList.size() > 0){
-                if(BasicVerificationUtils.isUserExists(userList, userName)){
-                    System.out.println("User already exists");
-                }else{
-                    DatabaseController.createUser(userName, address);
-                    userList.add(new User(userName, address));
-                    System.out.println("User added successfully");
-                }
-
-        }else{
-            DatabaseController.createUser(userName, address);
-            userList.add(new User(userName, address));
-            System.out.println("User added successfully");
-        }
+        DatabaseController.createUser(userName, address);
+        userList.add(new User(userName, address));
+        System.out.println("User added successfully");
     }
 
-    public static void addTransaction(List<User> userList, String userName, String accountType, String operationType, BigDecimal amount){
 
-        boolean isTransactionOk = BasicVerificationUtils.isTransactionOk(amount);
-        boolean isUserExists = BasicVerificationUtils.isUserExists(userList, userName);
-        boolean isAccountInSuchCurrencyExists;
-        User user;
-        boolean isFinalSumOk;
 
-        if(isTransactionOk && isUserExists){
-            user = BasicCommonUtils.getUser(userList, userName);
-            isAccountInSuchCurrencyExists = BasicVerificationUtils.isAccountInSuchCurrencyExists(user, accountType);
-            if(isAccountInSuchCurrencyExists){
-                Accounts userAccount = BasicCommonUtils.getAccount(user,accountType);
-                isFinalSumOk = BasicVerificationUtils.isFinalSumOk(userAccount.getBalance(), amount, operationType);
-                if(isFinalSumOk){
-                    userAccount.setBalance(BasicCommonUtils.newAccountBalance(userAccount.getBalance(), amount, operationType));
-                    DatabaseController.createTransaction(userName,accountType, amount);
-                    DatabaseController.updateBalance(userName, accountType, userAccount.getBalance());
-                    Print.consolePrint("Transaction acreated successfully. Balance updated");
-                }else{
-                    Print.consolePrint("Final account sum is invalid. Transaction prohibited");
-                }
-            }else{
-                Print.consolePrint("No account in such currency exists");
-            }
+    public static void addTransaction(User user, String accountType, String operationType, BigDecimal amount){
+
+        Accounts userAccount = BasicCommonUtils.getAccount(user,accountType);
+        boolean isFinalSumOk = BasicVerificationUtils.isFinalSumOk(userAccount.getBalance(), amount, operationType);
+
+        if(isFinalSumOk){
+            userAccount.setBalance(BasicCommonUtils.newAccountBalance(userAccount.getBalance(), amount, operationType));
+            DatabaseController.createTransaction(user.getName(),accountType, amount);
+            DatabaseController.updateBalance(user.getName(), accountType, userAccount.getBalance());
+            Print.consolePrint("Transaction created successfully. Balance updated");
         }else{
-            System.out.println("Amount transaction is invalid or user not exists");
+            Print.consolePrint("Final account sum is invalid. Transaction prohibited");
         }
     }
 }
+

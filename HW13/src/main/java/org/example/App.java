@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.controller.EntityController;
 import org.example.entities.User;
+import org.example.utils.BusinessInteractions;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -22,13 +23,18 @@ public class App
         BigDecimal bd = new BigDecimal(value).setScale(3, RoundingMode.HALF_UP);
 
         List<User> userList = new ArrayList<>();
-        EntityController.addUser(userList, "Mateusz", "Warshaw");
+        BusinessInteractions.createUser(userList, "Mateusz", "Warshaw");
+        BusinessInteractions.createUser(userList, "Alex", "Warshaw");
         //EntityController.addUser(userList, "Mateusz", "Warshaw");
+        //EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         //EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         EntityController.addAccount(userList, "Mateusz", bd, "EUR");
         EntityController.addAccount(userList, "Mateusz", bd, "GBP");
-        EntityController.addTransaction(userList,"Mateusz", "EUR", "+", bd);
-        EntityController.addTransaction(userList,"Mateusz", "EUR", "+", bd);
+        EntityController.addAccount(userList, "Alex", bd, "USD");
+        BusinessInteractions.deposit(userList,"Mateusz", "EUR", bd);
+        BusinessInteractions.deposit(userList,"Mateusz", "EUR", bd);
+        BusinessInteractions.withdraw(userList,"Mateusz", "EUR", bd);
+
 
 
 
