@@ -3,13 +3,12 @@ package org.example.controller;
 import org.example.database.Create;
 import org.example.database.Select;
 import org.example.database.Update;
-import org.example.utils.DatabaseCommonUtils;
+import org.example.entities.Accounts;
+import org.example.entities.User;
 import org.example.utils.DatabaseVerificationUtils;
 import org.example.utils.Print;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class DatabaseController {
 
@@ -28,33 +27,21 @@ public class DatabaseController {
 
     public static boolean createUser(String userName, String address) {
 
-        ResultSet resultSet;
-
-        try {
-            resultSet = select.selectUserRecord(userName);
-
-            if (resultSet.next() == false) {
-                create.createUserRecord(userName, address);
-                return true;
-
-            } else {
-                return false;
-            }
-
-        } catch (SQLException e) {
-
+        if(DatabaseVerificationUtils.isUserRecordExists(userName) == false){
+            create.createUserRecord(userName,address);
+            return true;
+        }else{
+            return false;
         }
-    return false;
     }
 
-    public static boolean createAccount(String userName, BigDecimal balance, String currency) {
+    public static boolean createAccount(User user, BigDecimal balance, String currency) {
 
-        int userId = DatabaseCommonUtils.getUserIdFromResultSet(userName);
-        boolean isUserExists = DatabaseVerificationUtils.isUserRecordExists(userName);
+        boolean isUserExists = DatabaseVerificationUtils.isUserRecordExists(user.getName());
         boolean isAccountInCurrencyExists = DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency);
 
         if (isUserExists && !isAccountInCurrencyExists) {
-            create.createAccountRecord(userId,balance,currency);
+            create.createAccountRecord(user.getUserId(),balance,currency);
             return  true;
 
         }else{
@@ -63,16 +50,10 @@ public class DatabaseController {
         return false;
     }
 
-    public  static boolean createTransaction(String userName, String currency, BigDecimal amount){
+    public  static boolean createTransaction(Accounts account, String currency, BigDecimal amount){
 
-        int userId = DatabaseCommonUtils.getUserIdFromResultSet(userName);
-        int accountId = DatabaseCommonUtils.getAccountIdFromResultSet(userId, currency);
-        boolean isUserExists = DatabaseVerificationUtils.isUserRecordExists(userName);
-        boolean isAccountInCurrencyExists = DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency);
-
-        if(isUserExists && isAccountInCurrencyExists){
-
-            create.createTransactionRecord(accountId, amount);
+        if(DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency)){
+            create.createTransactionRecord(account.getAccountId(), amount);
             return true;
         }else{
             Print.consolePrint("Unable to create transaction");
@@ -80,20 +61,33 @@ public class DatabaseController {
         return false;
     }
 
-    public static boolean updateBalance(String userName, String currency, BigDecimal balance){
+    public static boolean updateBalance(Accounts account, String currency, BigDecimal balance){
 
-        int userId = DatabaseCommonUtils.getUserIdFromResultSet(userName);
-        int accountId = DatabaseCommonUtils.getAccountIdFromResultSet(userId, currency);
-        boolean isUserExists = DatabaseVerificationUtils.isUserRecordExists(userName);
-        boolean isAccountInCurrencyExists = DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency);
-
-        if(isUserExists && isAccountInCurrencyExists){
-            update.updateAccountBalanceRecord(balance, accountId);
+        if(DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency)){
+            update.updateAccountBalanceRecord(balance, account.getAccountId());
             return true;
         }else{
             Print.consolePrint("Unable to update account balance");
         }
         return false;
+    }
+
+    public static boolean selectUserByName(String userName){
+
+        if(DatabaseVerificationUtils.isUserRecordExists(userName)){
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
+    public static boolean selectAccountInCurrencyFromUser(String currency){
+
+        if(DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 

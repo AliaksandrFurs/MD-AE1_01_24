@@ -18,7 +18,7 @@ public class App
 {
     public static void main( String[] args ) throws SQLException {
 
-        double value= 259;
+        double value= 800;
 
         BigDecimal bd = new BigDecimal(value).setScale(3, RoundingMode.HALF_UP);
 

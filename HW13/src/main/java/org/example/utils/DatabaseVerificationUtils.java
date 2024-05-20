@@ -11,45 +11,19 @@ public class DatabaseVerificationUtils {
 
     public static  boolean isUserRecordExists(String userName){
 
-        ResultSet userResultSet = null;
-
-        try {
-            userResultSet = select.selectUserRecord(userName);
-
-            if (userResultSet.next()) {
-                userResultSet.close();
-                return true;
-
-            } else {
-                userResultSet.close();
-                return false;
-            }
-
-        } catch (SQLException e) {
-
+        if(select.selectUserRecord(userName)){
+            return true;
+        }else{
+            return false;
         }
-       return true;
     }
 
     public static boolean isAccountInSuchCurrencyExists(String currency){
 
-        ResultSet accountResultSet = null;
-
-        try {
-            accountResultSet = select.selectAccountRecord(currency);
-
-            if (accountResultSet.next()) {
-                accountResultSet.close();
-                return true;
-
-            } else {
-                accountResultSet.close();
-                return false;
-            }
-
-        } catch (SQLException e) {
-
+        if(select.selectAccountRecord(currency)){
+            return true;
+        }else{
+            return false;
         }
-        return true;
     }
 }

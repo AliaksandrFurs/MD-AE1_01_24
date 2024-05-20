@@ -11,23 +11,25 @@ public class Select extends BaseClass{
 
     PreparedStatement preStatement = null;
 
-    public ResultSet selectUserRecord(String name){
+    public boolean selectUserRecord(String name){
 
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try{
             conn = DriverManager.getConnection(CONNECTION_STRING);
             preStatement = conn.prepareStatement(SELECT_USER_STRING);
             preStatement.setString(1, name);
             resultSet = preStatement.executeQuery();
-            return resultSet;
-
+            while(resultSet.next()){
+                conn.close();
+                return true;
+            }
         }catch(SQLException e){
             Print.consolePrint("Unable select users from  DB");
         }
-        return  resultSet;
+        return  false;
     }
 
-    public ResultSet selectAccountRecord(String currency){
+    public boolean selectAccountRecord(String currency){
 
         ResultSet resultSet = null;
         try{
@@ -35,12 +37,14 @@ public class Select extends BaseClass{
             preStatement = conn.prepareStatement(SELECT_ACCOUNT_STRING);
             preStatement.setString(1, currency);
             resultSet = preStatement.executeQuery();
-            return resultSet;
-
+            while(resultSet.next()){
+                conn.close();
+                return true;
+            }
+            return false;
         }catch(SQLException e){
             Print.consolePrint("Unable select accounts from  DB");
         }
-        return  resultSet;
+        return  false;
     }
-
 }

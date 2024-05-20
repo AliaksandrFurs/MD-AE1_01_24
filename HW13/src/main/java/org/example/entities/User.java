@@ -1,8 +1,5 @@
 package org.example.entities;
 
-import org.example.controller.DatabaseController;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +7,12 @@ public class User {
 
     private String name;
     private String adress;
+    private int userId;
     private List<Accounts> userAccountsList = new ArrayList<>();
-    //private int userId;
 
-    public User(String name, String adress){
+
+    public User(int userId, String name, String adress){
+        this.userId = userId;
         this.name = name;
         this.adress = adress;
     }
@@ -22,26 +21,23 @@ public class User {
         return name;
     }
 
-
-    public String getAdress() {
-        return adress;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Accounts getAccount(String currency){
-        for(Accounts account : userAccountsList){
-            if(account.getCurrency().equals(currency)){
-                return account;
-            }
-        }
-       return null;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public List<Accounts> getUserAccountsList() {
         return userAccountsList;
     }
 
-    public void addAccount(BigDecimal balance, String currency){
+    public int getUserId() {
+        return userId;
+    }
 
-        userAccountsList.add(new Accounts(balance, currency));
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

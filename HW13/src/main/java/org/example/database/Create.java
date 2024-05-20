@@ -35,13 +35,12 @@ public class Create extends BaseClass{
     public void createUserRecord(String userName, String address){
 
         try{
-            conn.close();
             conn = DriverManager.getConnection(CONNECTION_STRING);
             preStatement = conn.prepareStatement(INSERT_USER_STRING);
             preStatement.setString(1, userName);
             preStatement.setString(2, address);
             preStatement.executeUpdate();
-            System.out.println("User record created successfully");
+            System.out.println("User record inserted to DB");
 
         }catch(SQLException e){
             System.out.println("Unable to insert user record to  DB");
@@ -51,7 +50,6 @@ public class Create extends BaseClass{
     public void createAccountRecord(int userId, BigDecimal balance, String currency){
 
         try{
-            conn.close();
             conn = DriverManager.getConnection(CONNECTION_STRING);
             preStatement = conn.prepareStatement(INSERT_ACCOUNT_STRING);
             preStatement.setInt(1, userId);
@@ -70,15 +68,15 @@ public class Create extends BaseClass{
     public void createTransactionRecord(int accountId, BigDecimal amount){
 
         try{
-            conn.close();
             conn = DriverManager.getConnection(CONNECTION_STRING);
             preStatement = conn.prepareStatement(INSERT_TRANSACTION_STRING);
             preStatement.setInt(1, accountId);
             preStatement.setBigDecimal(2, amount);
             preStatement.executeUpdate();
+            Print.consolePrint("Transaction record inserted to DB");
 
         }catch(SQLException e){
-            Print.consolePrint("Unable to insert transaction record to  DB");
+            Print.consolePrint("Unable to insert transaction record to DB");
         }
 
     }

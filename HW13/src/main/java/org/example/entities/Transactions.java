@@ -8,8 +8,10 @@ public class Transactions {
     private int transactionId;
     private int accountId;
 
-    public Transactions(BigDecimal amount){
+    public Transactions(int transactionId, BigDecimal amount, int accountId){
+        this.transactionId = transactionId;
         this.amount = amount;
+        this.accountId = accountId;
     }
 
     public BigDecimal getAmount() {

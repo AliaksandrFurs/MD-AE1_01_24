@@ -11,7 +11,8 @@ public class Accounts {
     private int accountId;
     private List<Transactions> accountTransactionList = new ArrayList<>();
 
-    public Accounts(BigDecimal balance, String currency) {
+    public Accounts(int accountId, BigDecimal balance, String currency) {
+        this.accountId = accountId;
         this.balance = balance;
         this.currency = currency;
     }
