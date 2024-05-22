@@ -1,3 +1,5 @@
+package tests;
+
 import org.example.entities.User;
 import testdata.TestUser;
 

@@ -54,13 +54,13 @@ public class BasicVerificationUtils {
 
     public static boolean isFinalSumOk(BigDecimal balance, BigDecimal amount, String operationType){
 
-        BigDecimal finalSum = new BigDecimal(String.valueOf(balance)).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal finalSum = balance; //new BigDecimal(String.valueOf(balance)).setScale(2, RoundingMode.HALF_UP);
         switch(operationType){
             case "+":
-                finalSum.add(amount);
+                finalSum = finalSum.add(amount);
                 break;
             case "-":
-                finalSum.subtract(amount);
+                finalSum = finalSum.subtract(amount);
                 break;
         }
         if(finalSum.compareTo(balanceLimit) > 0 || finalSum.compareTo(BigDecimal.ZERO) < 0){
