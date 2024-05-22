@@ -15,7 +15,7 @@ public class EntityController {
     static PreparedStatement preStatement = null;
 
     public static Accounts addAccount(User user, BigDecimal balance, String currency) {
-
+        Accounts account = null;
         if (DatabaseController.createAccount(user, balance, currency)) {
             try (Connection conn = DriverManager.getConnection(CONNECTION_STRING)) {
                 if (DatabaseController.selectAccountInCurrencyFromUser(currency)) {
@@ -24,10 +24,10 @@ public class EntityController {
                     preStatement.setString(1, currency);
                     ResultSet resultSet = preStatement.executeQuery();
                     while (resultSet.next()) {
-                        Accounts account = new Accounts(resultSet.getInt("accountId"), resultSet.getBigDecimal("balance"),resultSet.getString("currency"));
-                        conn.close();
-                        return account;
+                        account = new Accounts(resultSet.getInt("accountId"), resultSet.getBigDecimal("balance"),resultSet.getString("currency"));
                     }
+                    conn.close();
+                    return account;
                 } else {
                     return null;
                 }
@@ -37,10 +37,10 @@ public class EntityController {
         } else {
             return null;
         }
-        return null;
     }
 
     public static User addUser(String userName, String address) {
+        User user = null;
         if (DatabaseController.createUser(userName, address)) {
             try (Connection conn = DriverManager.getConnection(CONNECTION_STRING)) {
                 String selectUserString = "SELECT * FROM USERS WHERE name=?";
@@ -48,17 +48,16 @@ public class EntityController {
                 preStatement.setString(1, userName);
                 ResultSet resultSet = preStatement.executeQuery();
                 while (resultSet.next()) {
-                    User user = new User(resultSet.getInt("userId"), resultSet.getString("name"), resultSet.getString("address"));
-                    conn.close();
-                    return user;
+                    user = new User(resultSet.getInt("userId"), resultSet.getString("name"), resultSet.getString("address"));
                 }
+                conn.close();
+                return user;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         } else {
             return null;
         }
-        return null;
     }
 
 
@@ -73,16 +72,15 @@ public class EntityController {
                 ResultSet resultSet = preStatement.executeQuery();
                 while (resultSet.next()) {
                     transactions.add(new Transactions(resultSet.getInt("transactionId"), resultSet.getBigDecimal("amount"), resultSet.getInt("accountId")));
-                    conn.close();
-                    return transactions;
                 }
+                conn.close();
+                return transactions;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         } else {
             return null;
         }
-        return null;
     }
 }
 

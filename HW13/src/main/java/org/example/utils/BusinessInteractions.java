@@ -18,21 +18,22 @@ public class BusinessInteractions {
                 if (BasicVerificationUtils.isAccountInSuchCurrencyExists(user, accountType)){
                     Accounts account = BasicCommonUtils.getAccount(user, accountType);
                     if (BasicVerificationUtils.isFinalSumOk(account.getBalance(), amount, "-")) {
-                        BigDecimal newAccountBalance = BasicCommonUtils.newAccountBalance(account.getBalance(), amount, "+");
+                        BigDecimal newAccountBalance = BasicCommonUtils.newAccountBalance(account.getBalance(), amount, "-");
                         List<Transactions> transaction = EntityController.addTransaction(account, accountType, amount, newAccountBalance);
-                        if (transaction != null) {
+                        if (transaction != null && transaction.size()==account.getAccountTransactionList().size()+1) {
                             account.setAccountTransactionList(transaction);
+                            account.setBalance(newAccountBalance);
                         }else{
-                            //print smth
+                            Print.consolePrint("Unable to create transaction");
                         }
                     }else{
-                        //print smth
+                        Print.consolePrint("Unable to create transaction for " + userName + " for account in " + accountType + " because final sum is invalid");
                     }
                 }else{
-                    //print smth
+                    Print.consolePrint("Unable to create transaction for " + userName + " because account in " + accountType + " already exists");
                 }
             }else{
-                //print smth
+                Print.consolePrint("Unable to create transaction for " + userName + " because this user not exists");
             }
         }
     }
@@ -47,19 +48,20 @@ public class BusinessInteractions {
                     if (BasicVerificationUtils.isFinalSumOk(account.getBalance(), amount, "+")) {
                         BigDecimal newAccountBalance = BasicCommonUtils.newAccountBalance(account.getBalance(), amount, "+");
                         List<Transactions> transaction = EntityController.addTransaction(account, accountType, amount, newAccountBalance);
-                        if (transaction != null) {
+                        if (transaction != null && transaction.size()==account.getAccountTransactionList().size()+1) {
                             account.setAccountTransactionList(transaction);
+                            account.setBalance(newAccountBalance);
                         }else{
-                            //print smth
+                            Print.consolePrint("Unable to create transaction");
                         }
                     }else{
-                        //print smth
+                        Print.consolePrint("Unable to create transaction for " + userName + " for account in " + accountType + " because final sum is invalid");
                     }
                 }else{
-                    //print smth
+                    Print.consolePrint("Unable to create transaction for " + userName + " because account in " + accountType + " already exists");
                 }
             }else{
-                //print smth
+                Print.consolePrint("Unable to create transaction for " + userName + " because this user not exists");
             }
         }
     }

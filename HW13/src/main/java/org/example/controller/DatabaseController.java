@@ -72,15 +72,6 @@ public class DatabaseController {
         return false;
     }
 
-    public static boolean selectUserByName(String userName){
-
-        if(DatabaseVerificationUtils.isUserRecordExists(userName)){
-            return  true;
-        }else{
-            return false;
-        }
-    }
-
     public static boolean selectAccountInCurrencyFromUser(String currency){
 
         if(DatabaseVerificationUtils.isAccountInSuchCurrencyExists(currency)){

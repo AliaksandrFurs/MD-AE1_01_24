@@ -31,7 +31,7 @@ public class Select extends BaseClass{
 
     public boolean selectAccountRecord(String currency){
 
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try{
             conn = DriverManager.getConnection(CONNECTION_STRING);
             preStatement = conn.prepareStatement(SELECT_ACCOUNT_STRING);
